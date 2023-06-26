@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86f7fb3ea5bac04a857e5f4a0b30077, type: 3}
+  m_Name: st_female_shirt_MeshHide
+  m_EditorClassIdentifier: 
+  _asset: {fileID: 0}
+  _assetSlotName: st_female_torso_upper_LOD0
+  _serializedFlags:
+  - flags: 00000000e0ffffffffff0f00000000000080ffffffffff3f87ffffffffffffffffffffa70100000000000000000060fc0700000000000000000000000000000000c0ffff3f0000000000fefffcffffffffffffff1900000080ffffffffffffffffffffffffffffff07f8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0300000000000000fff90ff0ffffffffffff3f000000000000000000fffffff8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3f00000000000000f09fff00ffffffffffffff87ff0100fcfffff0ffffff0f0000
+    Count: 1972

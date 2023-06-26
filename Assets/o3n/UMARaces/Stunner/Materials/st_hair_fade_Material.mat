@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: st_hair_fade_Material
+  m_Shader: {fileID: 4800000, guid: ef7087d0d9b117b4fb8b7cdec67a99d1, type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _NORMALMAP
+  - _SPECGLOSSMAP
+  m_InvalidKeywords:
+  - _WINDQUALITY_NONE
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BrdfMap:
+        m_Texture: {fileID: 2800000, guid: d19496e8182853844b5d89a7775259ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: cb39ee0a00a123d48970927397318917, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 2800000, guid: e7fcab7f5fb700049b567ea0494fa781, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission:
+        m_Texture: {fileID: 2800000, guid: 8aee501f0c723ec4a8b9d0e62580c7d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ExtraTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IrisGlowMask:
+        m_Texture: {fileID: 2800000, guid: 8aee501f0c723ec4a8b9d0e62580c7d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IrisTex:
+        m_Texture: {fileID: 2800000, guid: 3ba05c56d5a1a994c94d8243dfa0bb1a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3ba05c56d5a1a994c94d8243dfa0bb1a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: 8aee501f0c723ec4a8b9d0e62580c7d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 2800000, guid: 8aee501f0c723ec4a8b9d0e62580c7d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: 0ae1736ea99d36545b1778d58a43ab06, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PBRSkinSubGraph_18D00B1B_Texture2DFE4C2BB4_3240561549:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 8aee501f0c723ec4a8b9d0e62580c7d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SubsurfaceTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClipTreshold: 0.35
+    - _BillboardKwToggle: 0
+    - _BillboardShadowFade: 0.5
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _Glossiness: 0.5
+    - _HairHighlightStrength: 0.35
+    - _HairHighlightWhiteness: 0.3
+    - _HairHiglightStrength: 0.35
+    - _HighlighWhiteness: 0.3
+    - _HighlightBias: -0.2
+    - _HighlightWhiteness: 0.3
+    - _HueVariationKwToggle: 0
+    - _Metallic: 0
+    - _Mode: 1
+    - _NoiseFactor: 0.2
+    - _NoiseStrengthU: 80
+    - _NoiseStrengthV: 10
+    - _NormalMapKwToggle: 0
+    - _PrimaryHighlightExponent: 60
+    - _SecondaryHighlightExponent: 50
+    - _SecondaryHighlightOffset: 0.45
+    - _SrcBlend: 1
+    - _SubsurfaceIndirect: 0.25
+    - _SubsurfaceKwToggle: 0
+    - _TwoSided: 0
+    - _WindQuality: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

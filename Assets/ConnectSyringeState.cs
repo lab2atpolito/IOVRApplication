@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ConnectSyringeState : ATask
+{
+    [SerializeField] private ConnectorEndDx _connector;
+
+    [SerializeField] private GameObject[] _handGrabsSyringe;
+    [SerializeField] private GameObject[] _handGrabsConnector;
+
+    private TasksManager _simulation;
+
+    private void Start()
+    {
+        //_description = "Connect the other end of the connector to the 10 ml syringe of normal saline.";
+        _simulation = GetComponentInParent<TasksManager>();
+    }
+
+    public override void OnEntry(TasksManager controller)
+    {
+        _isCompleted = false;
+        controller.DisableButton();
+        foreach(GameObject handGrab in _handGrabsSyringe)
+        {
+            handGrab.SetActive(true);
+        }
+        foreach (GameObject handGrab in _handGrabsConnector)
+        {
+            handGrab.SetActive(true);
+        }
+        _tts.SpeakQueued(_speakingText);
+        _virtualAssistantText.text = _speakingText;
+    }
+
+    public override void OnExit(TasksManager controller)
+    {
+        foreach (GameObject handGrab in _handGrabsConnector)
+        {
+            handGrab.SetActive(false);
+        }
+    }
+
+    public override void OnUpdate(TasksManager controller)
+    {
+        if (_connector.IsSnapped() && !_isCompleted)
+        {
+            _isCompleted = true;
+            controller.EnableButton();
+            controller.PlayTaskCompletedSound();
+        }
+        else if(!_connector.IsSnapped())
+        {
+            _isCompleted = false;
+            controller.DisableButton();
+        }
+    }
+}

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0188188c253e0c4bb9b46e19fa7312e, type: 3}
+  m_Name: st_female_pullover_02_Recipe
+  m_EditorClassIdentifier: 
+  label: 
+  resourcesOnly: 0
+  recipeType: Wardrobe
+  DisplayValue: Pullover 02
+  compatibleRaces:
+  - o3n Stunner Jane
+  wardrobeRecipeThumbs:
+  - race: o3n Stunner Jane
+    filename: 
+    thumb: {fileID: 21300000, guid: 7672a5e5c2d572f4698115a434bd284b, type: 3}
+  wardrobeSlot: Chest2
+  Hides: []
+  HideTags: []
+  suppressWardrobeSlots: []
+  activeWardrobeSet: []
+  MeshHideAssets:
+  - {fileID: 11400000, guid: 61a3196d435acf74bb9f7ba30634b6e2, type: 2}
+  - {fileID: 11400000, guid: 1bebe3c1882fa4040b074bc631d70196, type: 2}
+  - {fileID: 11400000, guid: 7ed13920d3eba6d4faf80dbff2e20492, type: 2}
+  - {fileID: 11400000, guid: a8b64b19c87cbe246a26845adca6dced, type: 2}
+  - {fileID: 11400000, guid: 850f4dc55a69ec64aab4efee55677411, type: 2}
+  - {fileID: 11400000, guid: c39d68ed8e66eaf4dbe5d30c21ea7270, type: 2}
+  - {fileID: 11400000, guid: 310bbed8c16751244b988ceb462beff5, type: 2}
+  - {fileID: 11400000, guid: 97b857eebbcfd2c48ae224327ee89372, type: 2}
+  - {fileID: 11400000, guid: ab2ccc8acee8fb84eab38732a8c50221, type: 2}
+  - {fileID: 11400000, guid: b1a77c98d2b6d6b4da9dd655ae235995, type: 2}
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"st_female_pullover_02","scale":100,"copyIdx":-1,"overlays":[{"id":"st_female_pullover_02_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0],"isTransformed":false,"scale":{"x":1.0,"y":1.0,"z":1.0},"rotation":0.0}],"Tags":[],"Races":[]}],"colors":[],"fColors":[{"name":"PulloverColor01","colors":[245,190,190,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0],"ShaderParms":[]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  IncompatibleRecipes: []
+  UserField: 
+  replaces: Nothing
