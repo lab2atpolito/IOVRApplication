@@ -1,0 +1,1017 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9197235927271766280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 26
+  m_EditorClassIdentifier: 
+  particleIndices: 34000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-8554650794309318006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 2
+  m_EditorClassIdentifier: 
+  particleIndices: 04000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-7062799629812138241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 27
+  m_EditorClassIdentifier: 
+  particleIndices: 36000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-6204515467363661297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 4
+  m_EditorClassIdentifier: 
+  particleIndices: 08000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-6026587834117108368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 19
+  m_EditorClassIdentifier: 
+  particleIndices: 26000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-5613563568972366451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 21
+  m_EditorClassIdentifier: 
+  particleIndices: 2a000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-5362231322136858359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 5
+  m_EditorClassIdentifier: 
+  particleIndices: 0a000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-4518859148014644581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 0
+  m_EditorClassIdentifier: 
+  particleIndices: 00000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-4472545565918442984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 22
+  m_EditorClassIdentifier: 
+  particleIndices: 2c000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-3913033247851424548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 23
+  m_EditorClassIdentifier: 
+  particleIndices: 2e000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-3754279318447912116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 17
+  m_EditorClassIdentifier: 
+  particleIndices: 22000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-3654237331907579593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 20
+  m_EditorClassIdentifier: 
+  particleIndices: 28000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-1479811571211922058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 10
+  m_EditorClassIdentifier: 
+  particleIndices: 14000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &-332992812917679042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 9
+  m_EditorClassIdentifier: 
+  particleIndices: 12000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e028b099aa5d14e399bc3d87df5b7737, type: 3}
+  m_Name: SpringRod
+  m_EditorClassIdentifier: 
+  m_Empty: 0
+  m_ActiveParticleCount: 3
+  m_InitialActiveParticleCount: 3
+  _bounds:
+    m_Center: {x: -0.44508734, y: 2.8499994, z: -0.46646598}
+    m_Extent: {x: 0.19721845, y: 0.05000007, z: 0.1881797}
+  positions:
+  - {x: -0.6423058, y: 2.7999995, z: -0.27828628}
+  - {x: -0.48284987, y: 2.8499994, z: -0.50604236}
+  - {x: -0.24786891, y: 2.8999994, z: -0.6546457}
+  restPositions:
+  - {x: -0.6423058, y: 2.7999995, z: -0.27828628, w: 1}
+  - {x: -0.48284987, y: 2.8499994, z: -0.50604236, w: 1}
+  - {x: -0.24786891, y: 2.8999994, z: -0.6546457, w: 1}
+  orientations:
+  - {x: -0.026715415, y: 0.94995403, z: 0.08473943, w: 0.29948768}
+  - {x: -0.042865735, y: 0.8724616, z: 0.07782682, w: 0.48053747}
+  - {x: -0.042865735, y: 0.8724616, z: 0.07782682, w: 0.48053747}
+  restOrientations:
+  - {x: -0.026715415, y: 0.94995403, z: 0.08473943, w: 0.29948768}
+  - {x: -0.042865735, y: 0.8724616, z: 0.07782682, w: 0.48053747}
+  - {x: -0.042865735, y: 0.8724616, z: 0.07782682, w: 0.48053747}
+  velocities:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  angularVelocities:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  invMasses:
+  - 1
+  - 1
+  - 1
+  invRotationalMasses:
+  - 1
+  - 1
+  - 1
+  filters: 010000000100000001000000
+  principalRadii:
+  - {x: 0.1, y: 0.1, z: 0.1}
+  - {x: 0.1, y: 0.1, z: 0.1}
+  - {x: 0.1, y: 0.1, z: 0.1}
+  colors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  points: 
+  edges: 00000000010000000100000002000000
+  triangles: 
+  distanceConstraintsData:
+    batches: []
+  bendConstraintsData:
+    batches: []
+  skinConstraintsData:
+    batches: []
+  tetherConstraintsData:
+    batches: []
+  stretchShearConstraintsData:
+    batches:
+    - m_IDs: 00000000
+      m_IDToIndex: 00000000
+      m_ConstraintCount: 1
+      m_ActiveConstraintCount: 1
+      m_InitialActiveConstraintCount: 1
+      particleIndices:
+        serializedContents: 0000000001000000
+        m_AlignBytes: 16
+      lambdas:
+        serializedContents: []
+        m_AlignBytes: 16
+      orientationIndices:
+        serializedContents: 00000000
+        m_AlignBytes: 16
+      restLengths:
+        serializedContents:
+        - 0.2824872
+        m_AlignBytes: 16
+      restOrientations:
+        serializedContents:
+        - {x: 0, y: 0, z: 0, w: 1}
+        m_AlignBytes: 16
+      stiffnesses:
+        serializedContents:
+        - {x: 0, y: 0, z: 0}
+        m_AlignBytes: 16
+    - m_IDs: 00000000
+      m_IDToIndex: 00000000
+      m_ConstraintCount: 1
+      m_ActiveConstraintCount: 1
+      m_InitialActiveConstraintCount: 1
+      particleIndices:
+        serializedContents: 0100000002000000
+        m_AlignBytes: 16
+      lambdas:
+        serializedContents: []
+        m_AlignBytes: 16
+      orientationIndices:
+        serializedContents: 01000000
+        m_AlignBytes: 16
+      restLengths:
+        serializedContents:
+        - 0.28248715
+        m_AlignBytes: 16
+      restOrientations:
+        serializedContents:
+        - {x: 0, y: 0, z: 0, w: 1}
+        m_AlignBytes: 16
+      stiffnesses:
+        serializedContents:
+        - {x: 0, y: 0, z: 0}
+        m_AlignBytes: 16
+  bendTwistConstraintsData:
+    batches:
+    - m_IDs: 00000000
+      m_IDToIndex: 00000000
+      m_ConstraintCount: 1
+      m_ActiveConstraintCount: 1
+      m_InitialActiveConstraintCount: 1
+      particleIndices:
+        serializedContents: 0000000001000000
+        m_AlignBytes: 16
+      lambdas:
+        serializedContents: []
+        m_AlignBytes: 16
+      restDarbouxVectors:
+        serializedContents:
+        - {x: -0.0000000017342039, y: -0.19364376, z: -0.034824602, w: 0.98045367}
+        m_AlignBytes: 16
+      stiffnesses:
+        serializedContents:
+        - {x: 0, y: 0, z: 0}
+        m_AlignBytes: 16
+      plasticity:
+        serializedContents:
+        - {x: 0, y: 0}
+        m_AlignBytes: 16
+    - m_IDs: 00000000
+      m_IDToIndex: 00000000
+      m_ConstraintCount: 1
+      m_ActiveConstraintCount: 1
+      m_InitialActiveConstraintCount: 1
+      particleIndices:
+        serializedContents: 0100000002000000
+        m_AlignBytes: 16
+      lambdas:
+        serializedContents: []
+        m_AlignBytes: 16
+      restDarbouxVectors:
+        serializedContents:
+        - {x: 0, y: 0, z: 0, w: 1}
+        m_AlignBytes: 16
+      stiffnesses:
+        serializedContents:
+        - {x: 0, y: 0, z: 0}
+        m_AlignBytes: 16
+      plasticity:
+        serializedContents:
+        - {x: 0, y: 0}
+        m_AlignBytes: 16
+  shapeMatchingConstraintsData:
+    batches: []
+  aerodynamicConstraintsData:
+    batches: []
+  chainConstraintsData:
+    batches:
+    - m_IDs: 00000000
+      m_IDToIndex: 00000000
+      m_ConstraintCount: 1
+      m_ActiveConstraintCount: 1
+      m_InitialActiveConstraintCount: 1
+      particleIndices:
+        serializedContents: 000000000100000002000000
+        m_AlignBytes: 16
+      lambdas:
+        serializedContents: []
+        m_AlignBytes: 16
+      firstParticle:
+        serializedContents: 00000000
+        m_AlignBytes: 16
+      numParticles:
+        serializedContents: 03000000
+        m_AlignBytes: 16
+      lengths:
+        serializedContents:
+        - {x: 0.2843484, y: 0.2843484}
+        m_AlignBytes: 16
+  volumeConstraintsData:
+    batches: []
+  groups:
+  - {fileID: -4518859148014644581}
+  - {fileID: 2371962795392660606}
+  - {fileID: -8554650794309318006}
+  - {fileID: 4748757721283841919}
+  - {fileID: -6204515467363661297}
+  - {fileID: -5362231322136858359}
+  - {fileID: 7744494324993175841}
+  - {fileID: 5743642769677576324}
+  - {fileID: 2090210430256682874}
+  - {fileID: -332992812917679042}
+  - {fileID: -1479811571211922058}
+  - {fileID: 8073728408466097637}
+  - {fileID: 3949240139764315219}
+  - {fileID: 3535050140158790076}
+  - {fileID: 8392284965903659261}
+  - {fileID: 8436558200313416828}
+  - {fileID: 7514755403420506347}
+  - {fileID: -3754279318447912116}
+  - {fileID: 8516833290342707563}
+  - {fileID: -6026587834117108368}
+  - {fileID: -3654237331907579593}
+  - {fileID: -5613563568972366451}
+  - {fileID: -4472545565918442984}
+  - {fileID: -3913033247851424548}
+  - {fileID: 1526367778732422361}
+  - {fileID: 6595340479447865845}
+  - {fileID: -9197235927271766280}
+  - {fileID: -7062799629812138241}
+  - {fileID: 237785562514482078}
+  - {fileID: 9190015862606898100}
+  path:
+    m_Names:
+    - control point 0
+    - control point 1
+    - control point 2
+    - control point 3
+    - control point 4
+    - control point 5
+    - control point 6
+    - control point 7
+    - control point 8
+    - control point 9
+    - control point 10
+    - control point 11
+    - control point 12
+    - control point 13
+    - control point 14
+    - control point 15
+    - control point 16
+    - control point 17
+    - control point 18
+    - control point 19
+    - control point 20
+    - control point 21
+    - control point 22
+    - control point 23
+    - control point 24
+    - control point 25
+    - control point 26
+    - control point 27
+    - control point 28
+    - control point 29
+    m_Points:
+      data:
+      - tangentMode: 0
+        inTangent: {x: 0, y: -0.026756361, z: -0.18729453}
+        position: {x: 0.7, y: 0, z: 0}
+        outTangent: {x: -0, y: 0.026756361, z: 0.18729453}
+      - tangentMode: 0
+        inTangent: {x: 0.13435684, y: -0.026756361, z: -0.13048933}
+        position: {x: 0.48769468, y: 0.1, z: 0.5021492}
+        outTangent: {x: -0.13435684, y: 0.026756361, z: 0.13048933}
+      - tangentMode: 0
+        inTangent: {x: 0.18721464, y: -0.026756361, z: 0.0054689148}
+        position: {x: -0.020439683, y: 0.2, z: 0.6997015}
+        outTangent: {x: -0.18721464, y: 0.026756361, z: -0.0054689148}
+      - tangentMode: 0
+        inTangent: {x: 0.12651055, y: -0.026756361, z: 0.13810982}
+        position: {x: -0.5161756, y: 0.3, z: 0.4728242}
+        outTangent: {x: -0.12651055, y: 0.026756361, z: -0.13810982}
+      - tangentMode: 0
+        inTangent: {x: -0.010933166, y: -0.026756361, z: 0.18697514}
+        position: {x: -0.69880635, y: 0.4, z: -0.040861934}
+        outTangent: {x: 0.010933166, y: 0.026756361, z: -0.18697514}
+      - tangentMode: 0
+        inTangent: {x: -0.14174496, y: -0.026756361, z: 0.122423865}
+        position: {x: -0.45755053, y: 0.5, z: -0.52976173}
+        outTangent: {x: 0.14174496, y: 0.026756361, z: -0.122423865}
+      - tangentMode: 0
+        inTangent: {x: -0.18657617, y: -0.026756361, z: -0.016388116}
+        position: {x: 0.06124942, y: 0.6, z: -0.6973152}
+        outTangent: {x: 0.18657617, y: 0.026756361, z: 0.016388116}
+      - tangentMode: 0
+        inTangent: {x: -0.11823272, y: -0.026756361, z: -0.14525929}
+        position: {x: 0.5428963, y: 0.70000005, z: -0.44188645}
+        outTangent: {x: 0.11823272, y: 0.026756361, z: 0.14525929}
+      - tangentMode: 0
+        inTangent: {x: 0.021829134, y: -0.026756361, z: -0.18601808}
+        position: {x: 0.6952294, y: 0.8000001, z: 0.08158484}
+        outTangent: {x: -0.021829134, y: 0.026756361, z: 0.18601808}
+      - tangentMode: 0
+        inTangent: {x: 0.14864974, y: -0.026756361, z: -0.11394075}
+        position: {x: 0.42584547, y: 0.9000001, z: 0.5555678}
+        outTangent: {x: -0.14864974, y: 0.026756361, z: 0.11394075}
+      - tangentMode: 0
+        inTangent: {x: 0.18530135, y: -0.026756361, z: 0.027251536}
+        position: {x: -0.10185068, y: 1.0000001, z: 0.69255066}
+        outTangent: {x: -0.18530135, y: 0.026756361, z: -0.027251536}
+      - tangentMode: 0
+        inTangent: {x: 0.1095516, y: -0.026756357, z: 0.15191339}
+        position: {x: -0.5677656, y: 1.1000001, z: 0.4094414}
+        outTangent: {x: -0.1095516, y: 0.026756357, z: -0.15191339}
+      - tangentMode: 0
+        inTangent: {x: -0.032650698, y: -0.026756361, z: 0.18442662}
+        position: {x: -0.68928134, y: 1.2000002, z: -0.12202966}
+        outTangent: {x: 0.032650698, y: 0.026756361, z: -0.18442662}
+      - tangentMode: 0
+        inTangent: {x: -0.15504752, y: -0.026756361, z: 0.10506904}
+        position: {x: -0.3926881, y: 1.3000002, z: -0.5794791}
+        outTangent: {x: 0.15504752, y: 0.026756361, z: -0.10506904}
+      - tangentMode: 0
+        inTangent: {x: -0.18339457, y: -0.026756361, z: -0.03802201}
+        position: {x: 0.14210458, y: 1.4000002, z: -0.68542415}
+        outTangent: {x: 0.18339457, y: 0.026756361, z: 0.03802201}
+      - tangentMode: 0
+        inTangent: {x: -0.10049687, y: -0.026756361, z: -0.1580494}
+        position: {x: 0.5906985, y: 1.5000002, z: -0.37559992}
+        outTangent: {x: 0.10049687, y: 0.026756361, z: 0.1580494}
+      - tangentMode: 0
+        inTangent: {x: 0.043360904, y: -0.026756361, z: -0.18220612}
+        position: {x: 0.6809825, y: 1.6000003, z: 0.1620583}
+        outTangent: {x: -0.043360904, y: 0.026756361, z: 0.18220612}
+      - tangentMode: 0
+        inTangent: {x: 0.1609165, y: -0.026756361, z: -0.09583897}
+        position: {x: 0.3581914, y: 1.7000003, z: 0.6014141}
+        outTangent: {x: -0.1609165, y: 0.026756361, z: 0.09583897}
+      - tangentMode: 0
+        inTangent: {x: 0.18086228, y: -0.026756365, z: 0.04866282}
+        position: {x: -0.18187381, y: 1.8000003, z: 0.67595994}
+        outTangent: {x: -0.18086228, y: 0.026756365, z: -0.04866282}
+      - tangentMode: 0
+        inTangent: {x: 0.09109937, y: -0.026756361, z: 0.16364639}
+        position: {x: -0.6116168, y: 1.9000003, z: 0.34047744}
+        outTangent: {x: -0.09109937, y: 0.026756361, z: -0.16364639}
+      - tangentMode: 0
+        inTangent: {x: -0.05392305, y: -0.026756357, z: 0.17936425}
+        position: {x: -0.6703613, y: 2.0000002, z: -0.2015336}
+        outTangent: {x: 0.05392305, y: 0.026756357, z: -0.17936425}
+      - tangentMode: 0
+        inTangent: {x: -0.16623655, y: -0.026756361, z: 0.08628239}
+        position: {x: -0.3224743, y: 2.1000001, z: -0.6212973}
+        outTangent: {x: 0.16623655, y: 0.026756361, z: -0.08628239}
+      - tangentMode: 0
+        inTangent: {x: -0.17771336, y: -0.026756361, z: -0.059137143}
+        position: {x: 0.22102086, y: 2.2, z: -0.66419107}
+        outTangent: {x: 0.17771336, y: 0.026756361, z: 0.059137143}
+      - tangentMode: 0
+        inTangent: {x: -0.081391826, y: -0.026756361, z: -0.16868493}
+        position: {x: 0.630448, y: 2.3, z: -0.30419618}
+        outTangent: {x: 0.081391826, y: 0.026756361, z: 0.16868493}
+      - tangentMode: 0
+        inTangent: {x: 0.064300805, y: -0.026756361, z: -0.1759109}
+        position: {x: 0.6574545, y: 2.3999999, z: 0.24031968}
+        outTangent: {x: -0.064300805, y: 0.026756361, z: 0.1759109}
+      - tangentMode: 0
+        inTangent: {x: 0.17098948, y: -0.026756357, z: -0.076431856}
+        position: {x: 0.28565866, y: 2.4999998, z: 0.63906115}
+        outTangent: {x: -0.17098948, y: 0.026756357, z: 0.076431856}
+      - tangentMode: 0
+        inTangent: {x: 0.17395844, y: -0.026756361, z: 0.069409624}
+        position: {x: -0.25941357, y: 2.5999997, z: 0.65015733}
+        outTangent: {x: -0.17395844, y: 0.026756361, z: -0.069409624}
+      - tangentMode: 0
+        inTangent: {x: 0.071406715, y: -0.026756357, z: 0.17314824}
+        position: {x: -0.64712936, y: 2.6999996, z: 0.26687756}
+        outTangent: {x: -0.071406715, y: 0.026756357, z: -0.17314824}
+      - tangentMode: 0
+        inTangent: {x: -0.07445928, y: -0.026756361, z: 0.17185766}
+        position: {x: -0.6423058, y: 2.7999995, z: -0.27828628}
+        outTangent: {x: 0.07445928, y: 0.026756361, z: -0.17185766}
+      - tangentMode: 0
+        inTangent: {x: -0.17515934, y: -0.026756361, z: 0.066320695}
+        position: {x: -0.24786891, y: 2.8999994, z: -0.6546457}
+        outTangent: {x: 0.17515934, y: 0.026756361, z: -0.066320695}
+    m_Normals:
+      data:
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+      - {x: 0, y: 1, z: 0}
+    m_Colors:
+      data:
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+      - {r: 1, g: 1, b: 1, a: 1}
+    m_Thickness:
+      data:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    m_Masses:
+      data:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    m_RotationalMasses:
+      data:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    m_Filters:
+      data: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+    m_Closed: 0
+    m_ArcLengthTable:
+    - 0
+    - 0.027028505
+    - 0.0540623
+    - 0.081106305
+    - 0.10816362
+    - 0.13523571
+    - 0.16232269
+    - 0.18942341
+    - 0.21653584
+    - 0.24365716
+    - 0.27078402
+    - 0.29791278
+    - 0.32503965
+    - 0.35216096
+    - 0.37927338
+    - 0.4063741
+    - 0.43346107
+    - 0.46053317
+    - 0.4875905
+    - 0.5146345
+    - 0.5416683
+    - 0.5686968
+    m_TotalSplineLenght: 0.5686968
+    OnPathChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    OnControlPointAdded:
+      m_PersistentCalls:
+        m_Calls: []
+    OnControlPointRemoved:
+      m_PersistentCalls:
+        m_Calls: []
+    OnControlPointRenamed:
+      m_PersistentCalls:
+        m_Calls: []
+  thickness: 0.1
+  resolution: 0.25
+  m_InterParticleDistance: 0.2843484
+  totalParticles: 3
+  m_RestLength: 0.56497437
+  restLengths:
+  - 0.2824872
+  - 0.28248715
+  - 0
+  keepInitialShape: 1
+--- !u!114 &237785562514482078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 28
+  m_EditorClassIdentifier: 
+  particleIndices: 06000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &1526367778732422361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 24
+  m_EditorClassIdentifier: 
+  particleIndices: 30000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &2090210430256682874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 8
+  m_EditorClassIdentifier: 
+  particleIndices: 10000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &2371962795392660606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 1
+  m_EditorClassIdentifier: 
+  particleIndices: 02000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &3535050140158790076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 13
+  m_EditorClassIdentifier: 
+  particleIndices: 1a000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &3949240139764315219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 12
+  m_EditorClassIdentifier: 
+  particleIndices: 18000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &4748757721283841919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 3
+  m_EditorClassIdentifier: 
+  particleIndices: 06000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &5743642769677576324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 7
+  m_EditorClassIdentifier: 
+  particleIndices: 0e000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &6595340479447865845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 25
+  m_EditorClassIdentifier: 
+  particleIndices: 32000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &7514755403420506347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 16
+  m_EditorClassIdentifier: 
+  particleIndices: 20000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &7744494324993175841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 6
+  m_EditorClassIdentifier: 
+  particleIndices: 0c000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &8073728408466097637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 11
+  m_EditorClassIdentifier: 
+  particleIndices: 16000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &8392284965903659261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 14
+  m_EditorClassIdentifier: 
+  particleIndices: 1c000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &8436558200313416828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 15
+  m_EditorClassIdentifier: 
+  particleIndices: 1e000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &8516833290342707563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 18
+  m_EditorClassIdentifier: 
+  particleIndices: 24000000
+  m_Blueprint: {fileID: 11400000}
+--- !u!114 &9190015862606898100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+  m_Name: control point 29
+  m_EditorClassIdentifier: 
+  particleIndices: 0d000000
+  m_Blueprint: {fileID: 11400000}
