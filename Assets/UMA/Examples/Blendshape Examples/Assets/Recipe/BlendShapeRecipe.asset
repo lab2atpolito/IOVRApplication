@@ -19,11 +19,15 @@ MonoBehaviour:
   compatibleRaces:
   - HumanMaleDCS
   - HumanMale
+  - o3n Male
   wardrobeRecipeThumbs:
   - race: HumanMaleDCS
     filename: 
     thumb: {fileID: 0}
   - race: HumanMale
+    filename: 
+    thumb: {fileID: 0}
+  - race: o3n Male
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: Ears
@@ -32,7 +36,9 @@ MonoBehaviour:
   suppressWardrobeSlots: []
   activeWardrobeSet: []
   MeshHideAssets: []
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"MaleEarsMorph","scale":100,"copyIdx":-1,"overlays":[{"id":"MaleHead01","colorIdx":0,"rect":[0.0,0.0,0.0,0.0],"isTransformed":false,"scale":{"x":1.0,"y":1.0,"z":1.0},"rotation":0.0}],"Tags":["Ears","Head"],"Races":[]}],"colors":[],"fColors":[{"name":"Skin","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0],"ShaderParms":[]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  OverrideDNA:
+    PreloadValues: []
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"MaleEarsMorph","scale":100,"copyIdx":-1,"overlays":[{"id":"MaleHead01","colorIdx":0,"rect":[0.0,0.0,0.0,0.0],"isTransformed":false,"scale":{"x":1.0,"y":1.0,"z":1.0},"rotation":0.0}],"Tags":["Ears","Head"],"Races":[]}],"colors":[],"fColors":[{"name":"Skin","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0],"ShaderParms":[],"alwaysUpdate":false}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

@@ -274,6 +274,8 @@ Material:
     - _Power: 1
     - _PuddleMask: 0
     - _PuddleMaskTiling: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _RenderQueue: 0
     - _Rim: 0
     - _RimBias: 0
