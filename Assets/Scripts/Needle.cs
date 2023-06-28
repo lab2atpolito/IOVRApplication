@@ -102,14 +102,14 @@ public class Needle : MonoBehaviour
 
         _lineMaterial.SetColor("_Color", Color.white);
         _lineMaterial.EnableKeyword("_EMISSION");
-        _lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+        //_lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
         _lineMaterial.SetColor("_EmissionColor", Color.white);
     }
 
     public void HideLine()
     {
         _lineMaterial.DisableKeyword("_EMISSION");
-        _lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        //_lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
         _lineMaterial.SetColor("_EmissionColor", Color.black);
         _lineMaterial.SetColor("_Color", Color.white);
     }
