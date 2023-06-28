@@ -7,12 +7,9 @@ public class SyringeFlushState : ATask
     [SerializeField] private Syringe _syringe;
     [SerializeField] private MessageSystemUI _messageSys;
 
-    private TasksManager _simulation;
-
     private void Start()
     {
         //_description = "Flush the catheter with a rapid and vigorous 10 ml flush of normal saline prior to infusion. Verify that the flow is adequate.";
-        _simulation = GetComponentInParent<TasksManager>();
     }
 
     public override void OnEntry(TasksManager controller)
@@ -25,7 +22,7 @@ public class SyringeFlushState : ATask
 
     public override void OnExit(TasksManager controller)
     {
-        //_simulation.AddTaskTimestamp();
+        //DO NOTHING
     }
 
     public override void OnUpdate(TasksManager controller)
@@ -35,7 +32,7 @@ public class SyringeFlushState : ATask
             _isCompleted = true;
             controller.EnableButton();
             controller.PlayTaskCompletedSound();
-            _messageSys.SetMessage("You've successfully flushed the 10 ml syringe of saline solution into the medullary cavity of the bone. The flow seems to be regular.").SetType(MessageType.NOTIFICATION).Show();
+            _messageSys.SetMessage("You've successfully flushed the 10 ml syringe of saline solution into the medullary cavity of the bone.").SetType(MessageType.NOTIFICATION).Show(true);
         }
     }
 }

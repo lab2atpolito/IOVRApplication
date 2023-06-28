@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Verify5mmState : ATask
 {
-    private TasksManager _simulation;
-
     [SerializeField] private PowerDrill _drill;
     [SerializeField] private MessageSystemUI _messageSys;
 
@@ -14,7 +12,6 @@ public class Verify5mmState : ATask
     private void Start()
     {
         //_description = "Confirm that at least one black line on the catheter is visible, otherwise the needle is too short and larger size should be used";
-        _simulation = GetComponentInParent<TasksManager>();
     }
 
     public override void OnEntry(TasksManager controller)
@@ -28,12 +25,12 @@ public class Verify5mmState : ATask
 
     public override void OnExit(TasksManager controller)
     {
-        //_simulation.AddTaskTimestamp();
+        //DO NOTHING
     }
 
     public override void OnUpdate(TasksManager controller)
     {
-
+        //DO NOTHING
     }
 
     public override int GetNextTaskId(int currentTask)
@@ -43,15 +40,13 @@ public class Verify5mmState : ATask
         if(_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible() )
         {
             nextTaskId = currentTask + 1;
-            _messageSys.SetMessage("You've chosen the correct sized needle, at least one black line (5mm) is visible.").SetType(MessageType.NOTIFICATION).SetHasDuration(true).Show();
+            _messageSys.SetMessage("You've chosen the correct sized needle, at least one black line (5mm) is visible.").SetType(MessageType.NOTIFICATION).Show(true);
         }
         else
         {
             nextTaskId = 6;
-            _messageSys.SetMessage("You've chosen the wrong sized needle, choose another needle to proceed with the Intraosseous Insertion.").SetHasDuration(false).SetType(MessageType.WARNING).Show();
+            _messageSys.SetMessage("You've chosen the wrong sized needle, choose another needle to proceed with the Intraosseous Insertion.").SetType(MessageType.WARNING).Show(true);
         }
-        Debug.Log("Is One line visible: " + needle.IsOneLineVisible());
-        Debug.Log("Needle state: " + needle.GetCurrentState());
         return nextTaskId;
     }
 

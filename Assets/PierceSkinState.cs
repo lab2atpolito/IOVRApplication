@@ -10,14 +10,12 @@ public class PierceSkinState : ATask
     [SerializeField] private CanvaAnimator _precisionCanva;
     [SerializeField] private MessageSystemUI _messageSys; 
 
-    private TasksManager _simulation;
     private NeedleInteraction _needleInteractionMgr;
     private Needle _needle;
 
     private void Start()
     {
         //_description = "Insert EZ IO needle into selected site with the needle perpendicular to the bone surface until needle tip touches bone. Do not activate power driver yet.";
-        _simulation = GetComponentInParent<TasksManager>();
     }
 
     public override void OnEntry(TasksManager controller)
@@ -41,8 +39,23 @@ public class PierceSkinState : ATask
 
     public override void OnUpdate(TasksManager controller)
     {
+        //Pop up management
+        if(_needleInteractionMgr.GetCurrentState() == State.IN_SKIN && !_messageSys.IsActive())
+        {
+            _messageSys.SetMessage("The selected needle hasn't reached the proximal tibia bone surface yet.").SetType(MessageType.WARNING).Show(false);
+        }
+        else if(_needleInteractionMgr.GetCurrentState() == State.IN_AIR && _messageSys.IsActive())
+        {
+            _messageSys.Hide();
+        }
+        else if (_needleInteractionMgr.GetCurrentState() == State.IN_BONE && _messageSys.IsActive() && _needle.GetNeedleType() == NeedleType.PINK)
+        {
+            _messageSys.SetMessage("The selected needle hasn't reached the proximal tibia bone surface yet.").SetType(MessageType.WARNING);
+        }
+
+        //Task completion management
         // The user has chosen the blue (25mm) needle or the yellow needle (45mm)
-        if( _needle.GetNeedleType() == NeedleType.BLUE || _needle.GetNeedleType() == NeedleType.YELLOW)
+        if ( _needle.GetNeedleType() == NeedleType.BLUE || _needle.GetNeedleType() == NeedleType.YELLOW)
         {
             // The needle reached the surface of the bone
             if (_needleInteractionMgr.GetCurrentState() == State.IN_BONE && !_isCompleted)
@@ -50,10 +63,10 @@ public class PierceSkinState : ATask
                 _isCompleted = true;
                 controller.EnableButton();
                 controller.PlayTaskCompletedSound();
-                _messageSys.SetMessage("The selected needle has correctly reached the proximal tibia bone surface.").SetType(MessageType.NOTIFICATION).SetHasDuration(true).Show();
+                _messageSys.SetMessage("The selected needle has correctly reached the proximal tibia bone surface.").SetType(MessageType.NOTIFICATION);
             }
             // The needle doesn't reached the surface of the bone
-            else if (_needleInteractionMgr.GetCurrentState() != State.IN_BONE)
+            else if (_needleInteractionMgr.GetCurrentState() == State.IN_AIR || _needleInteractionMgr.GetCurrentState() == State.IN_SKIN)
             {
                 _isCompleted = false;
                 controller.DisableButton();
@@ -65,7 +78,6 @@ public class PierceSkinState : ATask
             {
                 _isCompleted = true;
                 controller.EnableButton();
-                _messageSys.SetMessage("The selected needle hasn't reached the proximal tibia bone surface.").SetType(MessageType.WARNING).SetHasDuration(true).Show();
             }
             else if (_needleInteractionMgr.GetCurrentState() == State.IN_AIR)
             {

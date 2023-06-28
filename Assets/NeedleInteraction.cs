@@ -17,7 +17,7 @@ public class NeedleInteraction : MonoBehaviour
     [SerializeField] private State _currentState;
 
     [SerializeField] private Transform _boneSurfaceTarget;
-    [SerializeField] private Transform _skinSurfaceTarget;
+    [SerializeField] private Vector3 _skinSurfaceTarget;
 
     private float _positionPrecision;
     private float _anglePrecision;
@@ -34,9 +34,9 @@ public class NeedleInteraction : MonoBehaviour
     [SerializeField] private Transform _baseControl;
     [SerializeField] private Transform _originControl;
 
-    private GameObject _skinSurfaceHitDebug;
-    private GameObject _boneSurfaceHitDebug;
-    private GameObject _medullaryCavitySurfaceHitDebug;
+    //private GameObject _skinSurfaceHitDebug;
+    //private GameObject _boneSurfaceHitDebug;
+    //private GameObject _medullaryCavitySurfaceHitDebug;
 
     private const float SKIN_DYN_FRICTION = 0.6f;
     private const float BONE_DYN_FRICTION = 1f;
@@ -75,14 +75,11 @@ public class NeedleInteraction : MonoBehaviour
 
         if (skinTargetHit.point != null)
         {
-            if (_skinSurfaceTarget == null)
-            {
-                _skinSurfaceTarget = Instantiate(_hitDebugPrefab, skinTargetHit.point, Quaternion.identity).transform;
-            }
+            _skinSurfaceTarget = skinTargetHit.point;
+            /*if (_skinSurfaceTarget == null)
+                //_skinSurfaceTarget = Instantiate(_hitDebugPrefab, skinTargetHit.point, Quaternion.identity).transform;
             else
-            {
-                _skinSurfaceTarget.position = skinTargetHit.point;
-            }
+                _skinSurfaceTarget.position = skinTargetHit.point;*/
         }
 
         Ray originRay = new Ray(_originControl.position, _originControl.forward);
@@ -118,27 +115,27 @@ public class NeedleInteraction : MonoBehaviour
         if(layerHitPoints.Contains(LayerType.SKIN))
         {
             _isHittingSkin = true;
-            if(_skinSurfaceHitDebug == null)
+            /*if(_skinSurfaceHitDebug == null)
             {
-                _skinSurfaceHitDebug = Instantiate(_hitDebugPrefab, ((RaycastHit) layerHitPoints[LayerType.SKIN]).point, Quaternion.identity);
-                _skinSurfaceHitDebug.GetComponent<Renderer>().material = new Material(_hitPointMaterial);
+                //_skinSurfaceHitDebug = Instantiate(_hitDebugPrefab, ((RaycastHit) layerHitPoints[LayerType.SKIN]).point, Quaternion.identity);
+                //_skinSurfaceHitDebug.GetComponent<Renderer>().material = new Material(_hitPointMaterial);
             }
             else
             {
-                _skinSurfaceHitDebug.transform.position = ((RaycastHit) layerHitPoints[LayerType.SKIN]).point;
-            }
+                //_skinSurfaceHitDebug.transform.position = ((RaycastHit) layerHitPoints[LayerType.SKIN]).point;
+            }*/
         }
         else
         {
             _isHittingSkin = false;
-            if(_skinSurfaceHitDebug != null)
+            /*if(_skinSurfaceHitDebug != null)
             {
-                Destroy(_skinSurfaceHitDebug);
-            }    
+                //Destroy(_skinSurfaceHitDebug);
+            }*/   
         }
 
         // Debugging Bone Surface Hit
-        if (layerHitPoints.Contains(LayerType.BONE))
+        /*if (layerHitPoints.Contains(LayerType.BONE))
         {
             if (_boneSurfaceHitDebug == null)
             {
@@ -156,10 +153,10 @@ public class NeedleInteraction : MonoBehaviour
             {
                 Destroy(_boneSurfaceHitDebug);
             }
-        }
+        }*/
 
         // Debugging Medullary Cavity Surface Hit
-        if (layerHitPoints.Contains(LayerType.MEDULLARY_CAVITY))
+        /*if (layerHitPoints.Contains(LayerType.MEDULLARY_CAVITY))
         {
             if (_medullaryCavitySurfaceHitDebug == null)
             {
@@ -177,7 +174,7 @@ public class NeedleInteraction : MonoBehaviour
             {
                 Destroy(_medullaryCavitySurfaceHitDebug);
             }
-        }
+        }*/
 
         // Skin Surface Hitting
         if (layerHitPoints.Contains(LayerType.SKIN))
@@ -205,35 +202,35 @@ public class NeedleInteraction : MonoBehaviour
             if (tipDistance < hitDistance)
             {
                 _currentState = State.IN_AIR;
-                _skinSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
+                //_skinSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
             }
             else
             {
-                _skinSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
+                //_skinSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
                 if (layerHitPoints.Contains(LayerType.BONE))
                 {
                     float boneHitDistance = ((RaycastHit)layerHitPoints[LayerType.BONE]).distance;
                     if (tipDistance < boneHitDistance)
                     {
                         _currentState = State.IN_SKIN;
-                        _boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
+                        //_boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
                     }
                     else
                     {
                         _currentState = State.IN_BONE;
-                        _boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
+                        //_boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
                         if (layerHitPoints.Contains(LayerType.MEDULLARY_CAVITY))
                         {
                             float medHitDistance = ((RaycastHit)layerHitPoints[LayerType.MEDULLARY_CAVITY]).distance;
                             if (tipDistance < medHitDistance)
                             {
                                 _currentState = State.IN_BONE;
-                                _medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
+                                //_medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
                             }
                             else
                             {
                                 _currentState = State.MEDULLARY_CAVITY;
-                                _medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
+                                //_medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
 
                             }
                         }
@@ -269,7 +266,7 @@ public class NeedleInteraction : MonoBehaviour
     private void UpdatePositionPrecision(RaycastHit hit)
     {
         // Calculate the distance between ideal insertion point and actual insertion point
-        float distance = Vector3.Distance(hit.point, _skinSurfaceTarget.transform.position);
+        float distance = Vector3.Distance(hit.point, _skinSurfaceTarget);
 
         // Calculate precision value normalizing distance value using position precision threshold
         float precisionValue = (1f - Mathf.Clamp01(distance / _positionPrecisionThreshold)) * 100f;

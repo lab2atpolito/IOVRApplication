@@ -19,7 +19,7 @@ public class MessageSystemUI : MonoBehaviour
 
 
     Message message = new Message();
-
+    private bool _isActive = false;
     public class Message
     {
         public string Text = "Insert message here.";
@@ -51,14 +51,9 @@ public class MessageSystemUI : MonoBehaviour
         return Instance;
     }
 
-    public MessageSystemUI SetHasDuration(bool value)
+    public void Show(bool hasDuration)
     {
-        _hasDuration = value;
-        return Instance;
-    }
-
-    public void Show()
-    {
+        _hasDuration = hasDuration;
         _messageText.text = message.Text;
         switch (message.Type)
         {
@@ -74,14 +69,15 @@ public class MessageSystemUI : MonoBehaviour
         }
         _messageIcon.color = Color.black;
 
+        _isActive = true;
         _canvas.ActivateCanvas();
         if (_hasDuration)
         {
-            StartCoroutine(ShowCoroutine());
+            StartCoroutine(HideCoroutine());
         }
     }
 
-    IEnumerator ShowCoroutine()
+    private IEnumerator HideCoroutine()
     {
         yield return new WaitForSeconds(_duration);
         Hide();
@@ -89,8 +85,14 @@ public class MessageSystemUI : MonoBehaviour
 
     public void Hide()
     {
+        _isActive = false;
         _canvas.HideCanvas();
         message = new Message();
+    }
+
+    public bool IsActive()
+    {
+        return _isActive;
     }
 }
 
