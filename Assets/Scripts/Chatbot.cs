@@ -160,28 +160,29 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     Needle needle = _drill.GetComponent<PowerDrill>().GetNeedle();
                     EnableLine(needle);
+                    Debug.Log("ENTRATO");
                 }
-                else if(text == "Now you will be able to see on the scene the 15mm needle set outlined")
+                else if(text == "Now you will be able to see in the scene the 15mm needle set outlined")
                 {
                     EnableSuggestion(_15mmNeedle);
                 }
-                else if(text == "Now you will be able to see on the scene the 25mm needle set outlined")
+                else if(text == "Now you will be able to see in the scene the 25mm needle set outlined")
                 {
                     EnableSuggestion(_25mmNeedle);
                 }
-                else if(text == "Now you will be able to see on the scene the 45mm needle set outlined")
+                else if(text == "Now you will be able to see in the scene the 45mm needle set outlined")
                 {
                     EnableSuggestion(_40mmNeedle);
                 }
-                else if(text == "Now you will be able to see on the scene the EZ Connect extension set outlined")
+                else if(text == "Now you will be able to see on the floor the EZ Connect extension set outlined")
                 {
                     EnableSuggestion(_connector);
                 }
-                else if(text == "Now you will be able to see on the scene the EZ Stabilizer dressing outlined")
+                else if(text == "Now you will be able to see on the floor the EZ Stabilizer dressing outlined")
                 {
                     EnableSuggestion(_stabilizer);
                 }     
-                else if(text == "Now you will be able to see on the scene the EZ-IO Power Driver outlined")
+                else if(text == "Now you will be able to see in the scene the EZ-IO Power Driver outlined")
                 {
                     EnableSuggestion(_drill);
                 }

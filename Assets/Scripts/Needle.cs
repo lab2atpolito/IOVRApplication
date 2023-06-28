@@ -22,15 +22,14 @@ public class Needle : MonoBehaviour
         Debug.Log(_type + " Needle State: " + _state);
 
         Material[] materials = _meshRenderer.materials;
-        Material lineMat = null;
         foreach (Material mat in materials)
         {
             if (mat.name == "Ago_2 (Instance)")
             {
-                lineMat = mat;
+                _lineMaterial = mat;
             }
         }
-        if (lineMat != null)
+        if (_lineMaterial != null)
             Debug.Log("Materiale trovato!");
         else
             Debug.Log("Materiale non trovato!");
