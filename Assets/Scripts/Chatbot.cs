@@ -156,10 +156,10 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     SetActiveSuggestion(_drillingInclinationSuggestion);
                 }
-                else if (text == "Now you will be able to see on the selected needle the blue line which can help you to verify that the needle is inserted correctly")
+                else if (text == "Now you will be able to see on the selected needle the white line which can help you to verify that the needle is inserted correctly")
                 {
-                    GameObject needle = _drill.GetComponent<PowerDrill>().GetNeedle().gameObject;
-                    EnableBlueLine(needle);
+                    Needle needle = _drill.GetComponent<PowerDrill>().GetNeedle();
+                    EnableLine(needle);
                 }
                 else if(text == "Now you will be able to see on the scene the 15mm needle set outlined")
                 {
@@ -209,9 +209,9 @@ namespace Meta.WitAi.TTS.Samples
             StartCoroutine(EnableSuggestionCoroutine(gameObject));
         }
 
-        private void EnableBlueLine(GameObject gameObject)
+        private void EnableLine(Needle needle)
         {
-            StartCoroutine(EnableBlueLineCoroutine(gameObject));
+            StartCoroutine(EnableBlueLineCoroutine(needle));
         }
 
         IEnumerator EnableSuggestionCoroutine(GameObject gameObject)
@@ -222,25 +222,11 @@ namespace Meta.WitAi.TTS.Samples
             gameObject.GetComponent<Outline>().enabled = false;
         }
 
-        IEnumerator EnableBlueLineCoroutine(GameObject gameObject)
+        IEnumerator EnableBlueLineCoroutine(Needle needle)
         {
-            Material[] materials = gameObject.GetComponent<Renderer>().materials;
-            Material lineMat = null;
-            foreach(Material mat in materials)
-            {
-                if(mat.name == "Ago_2")
-                {
-                    lineMat = mat;
-                    mat.SetColor("_Color", Color.white);
-                    mat.EnableKeyword("_EMISSION");
-                    mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-                    mat.SetColor("_EmissionColor", Color.white);
-                }
-            }
+            needle.ShowLine();
             yield return new WaitForSeconds(40f);
-            lineMat.DisableKeyword("_EMISSION");
-            lineMat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
-            lineMat.SetColor("_EmissionColor", Color.black);
+            needle.HideLine();
         }
 
         IEnumerator SetActiveSuggestionCoroutine(GameObject gameObject)

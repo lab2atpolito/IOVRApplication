@@ -11,12 +11,29 @@ public class Needle : MonoBehaviour
 
     private bool _hasSafetyCap = true;
 
+    [SerializeField] private MeshRenderer _meshRenderer;
+    public Material _lineMaterial;
+
     [SerializeField] private PowerDrill _drill;
 
     private void Start()
     {
         _state = NeedleState.NOTGRABBED;
         Debug.Log(_type + " Needle State: " + _state);
+
+        Material[] materials = _meshRenderer.materials;
+        Material lineMat = null;
+        foreach (Material mat in materials)
+        {
+            if (mat.name == "Ago_2 (Instance)")
+            {
+                lineMat = mat;
+            }
+        }
+        if (lineMat != null)
+            Debug.Log("Materiale trovato!");
+        else
+            Debug.Log("Materiale non trovato!");
     }
 
     public void Grab()
@@ -79,6 +96,23 @@ public class Needle : MonoBehaviour
     public bool HasSafetyCap()
     {
         return _hasSafetyCap;
+    }
+
+    public void ShowLine()
+    {
+
+        _lineMaterial.SetColor("_Color", Color.white);
+        _lineMaterial.EnableKeyword("_EMISSION");
+        _lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+        _lineMaterial.SetColor("_EmissionColor", Color.white);
+    }
+
+    public void HideLine()
+    {
+        _lineMaterial.DisableKeyword("_EMISSION");
+        _lineMaterial.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        _lineMaterial.SetColor("_EmissionColor", Color.black);
+        _lineMaterial.SetColor("_Color", Color.white);
     }
 }
 
