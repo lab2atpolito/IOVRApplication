@@ -20,12 +20,13 @@ public class LocateLandmarksState : ATask
         StartCoroutine(Wait(5f, controller));
         _tts.SpeakQueued(_speakingText);
         _virtualAssistantText.text = _speakingText;
-        _messageSys.SetMessage("If you don't remember the correct insertion point you can ask the virtual assistant to show it.").SetType(MessageType.SUGGESTION).Show();
+        _messageSys.SetMessage("If you don't remember the correct insertion point you can ask the virtual assistant to show it.").SetType(MessageType.SUGGESTION).SetHasDuration(false).Show();
     }
 
     public override void OnExit(TasksManager controller)
     {
         //_simulation.AddTaskTimestamp();
+        _messageSys.Hide();
     }
 
     private IEnumerator Wait(float seconds, TasksManager controller)

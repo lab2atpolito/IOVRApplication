@@ -50,8 +50,7 @@ public class PierceSkinState : ATask
                 _isCompleted = true;
                 controller.EnableButton();
                 controller.PlayTaskCompletedSound();
-                _messageSys.SetMessage("The selected needle has correctly reached the proximal tibia bone surface.").SetType(MessageType.NOTIFICATION).Show();
-
+                _messageSys.SetMessage("The selected needle has correctly reached the proximal tibia bone surface.").SetType(MessageType.NOTIFICATION).SetHasDuration(true).Show();
             }
             // The needle doesn't reached the surface of the bone
             else if (_needleInteractionMgr.GetCurrentState() != State.IN_BONE)
@@ -66,7 +65,7 @@ public class PierceSkinState : ATask
             {
                 _isCompleted = true;
                 controller.EnableButton();
-                _messageSys.SetMessage("The selected needle seems to be too short to reach the proximal tibia surface.").SetType(MessageType.WARNING).Show();
+                _messageSys.SetMessage("The selected needle hasn't reached the proximal tibia bone surface.").SetType(MessageType.WARNING).SetHasDuration(true).Show();
             }
             else if (_needleInteractionMgr.GetCurrentState() == State.IN_AIR)
             {

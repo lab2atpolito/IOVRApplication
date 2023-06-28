@@ -148,36 +148,42 @@ namespace Meta.WitAi.TTS.Samples
                 _speaker.SpeakQueued(root.messages[0].text);
 
                 string text = root.messages[0].text;
-                switch (text)
+                if (text == "Now you will be able to see the correct insertion point for the needle on the patient's leg")
                 {
-                    case "Now you will be able to see the correct insertion point for the needle on the patient's leg":
-                        SetActiveSuggestion(_insertionPositionSuggestion);
-                        break;
-                    case "Now you will be able to see a blue-colored line on the scene indicating the correct angle of the drill":
-                        SetActiveSuggestion(_drillingInclinationSuggestion);
-                        break;
-                    case "Now you will be able to see on the selected needle the blue line which can help you to verify that the needle is inserted correctly":
-                        GameObject needle = _drill.GetComponent<PowerDrill>().GetNeedle().gameObject;
-                        // material change
-                        break;
-                    case "Now you will be able to see on the scene the 15mm needle set outlined":
-                        EnableSuggestion(_15mmNeedle);
-                        break;
-                    case "Now you will be able to see on the scene the 25mm needle set outlined":
-                        EnableSuggestion(_25mmNeedle);
-                        break;
-                    case "Now you will be able to see on the scene the 45mm needle set outlined":
-                        EnableSuggestion(_40mmNeedle);
-                        break;
-                    case "Now you will be able to see on the scene the EZ Connect extension set outlined":
-                        EnableSuggestion(_connector);
-                        break;
-                    case "Now you will be able to see on the scene the EZ Stabilizer dressing outlined":
-                        EnableSuggestion(_stabilizer);
-                        break;
-                    case "Now you will be able to see on the scene the EZ-IO Power Driver outlined":
-                        EnableSuggestion(_drill);
-                        break;
+                    SetActiveSuggestion(_insertionPositionSuggestion);
+                }
+                else if (text == "Now you will be able to see a blue-colored line on the scene indicating the correct angle of the drill")
+                {
+                    SetActiveSuggestion(_drillingInclinationSuggestion);
+                }
+                else if (text == "Now you will be able to see on the selected needle the blue line which can help you to verify that the needle is inserted correctly")
+                {
+                    GameObject needle = _drill.GetComponent<PowerDrill>().GetNeedle().gameObject;
+                    EnableBlueLine(needle);
+                }
+                else if(text == "Now you will be able to see on the scene the 15mm needle set outlined")
+                {
+                    EnableSuggestion(_15mmNeedle);
+                }
+                else if(text == "Now you will be able to see on the scene the 25mm needle set outlined")
+                {
+                    EnableSuggestion(_25mmNeedle);
+                }
+                else if(text == "Now you will be able to see on the scene the 45mm needle set outlined")
+                {
+                    EnableSuggestion(_40mmNeedle);
+                }
+                else if(text == "Now you will be able to see on the scene the EZ Connect extension set outlined")
+                {
+                    EnableSuggestion(_connector);
+                }
+                else if(text == "Now you will be able to see on the scene the EZ Stabilizer dressing outlined")
+                {
+                    EnableSuggestion(_stabilizer);
+                }     
+                else if(text == "Now you will be able to see on the scene the EZ-IO Power Driver outlined")
+                {
+                    EnableSuggestion(_drill);
                 }
             }
             else
@@ -203,12 +209,38 @@ namespace Meta.WitAi.TTS.Samples
             StartCoroutine(EnableSuggestionCoroutine(gameObject));
         }
 
+        private void EnableBlueLine(GameObject gameObject)
+        {
+            StartCoroutine(EnableBlueLineCoroutine(gameObject));
+        }
+
         IEnumerator EnableSuggestionCoroutine(GameObject gameObject)
         {
             gameObject.GetComponent<Outline>().enabled = true;
             //Play audio
             yield return new WaitForSeconds(20f);
             gameObject.GetComponent<Outline>().enabled = false;
+        }
+
+        IEnumerator EnableBlueLineCoroutine(GameObject gameObject)
+        {
+            Material[] materials = gameObject.GetComponent<Renderer>().materials;
+            Material lineMat = null;
+            foreach(Material mat in materials)
+            {
+                if(mat.name == "Ago_2")
+                {
+                    lineMat = mat;
+                    mat.SetColor("_Color", Color.white);
+                    mat.EnableKeyword("_EMISSION");
+                    mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                    mat.SetColor("_EmissionColor", Color.white);
+                }
+            }
+            yield return new WaitForSeconds(40f);
+            lineMat.DisableKeyword("_EMISSION");
+            lineMat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            lineMat.SetColor("_EmissionColor", Color.black);
         }
 
         IEnumerator SetActiveSuggestionCoroutine(GameObject gameObject)

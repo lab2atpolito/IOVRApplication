@@ -21,6 +21,7 @@ public class PenetrateBoneState : ATask
         controller.DisableButton();
         _tts.SpeakQueued(_speakingText);
         _virtualAssistantText.text = _speakingText;
+        _messageSys.SetMessage("The tip of the needle hasn't reached the medullary cavity of the bone yet.").SetHasDuration(false).SetType(MessageType.WARNING).Show();
     }
 
     public override void OnExit(TasksManager controller)
@@ -32,6 +33,7 @@ public class PenetrateBoneState : ATask
         _simulation.SetInclinationPrecision(inclinationPrecision);
         Debug.Log("Position precision " + positionPrecision + " has been saved correctly!");
         Debug.Log("Inclination precision " + inclinationPrecision + " has been saved correctly!");
+        _messageSys.Hide();
     }
 
     public override void OnUpdate(TasksManager controller)
@@ -41,13 +43,14 @@ public class PenetrateBoneState : ATask
             _isCompleted = true;
             controller.EnableButton();
             controller.PlayTaskCompletedSound();
-            _messageSys.SetMessage("The tip of the needle has successfully reached the medullary cavity of the bone!").SetType(MessageType.NOTIFICATION).Show();
+            _messageSys.SetMessage("The tip of the needle has successfully reached the medullary cavity of the bone!").SetType(MessageType.NOTIFICATION);
 
         }
         else if(_drill.GetNeedle().GetComponent<NeedleInteraction>().GetCurrentState() != State.MEDULLARY_CAVITY)
         {
             _isCompleted = false;
             controller.DisableButton();
+            _messageSys.SetMessage("The tip of the needle hasn't reached the medullary cavity of the bone yet.").SetType(MessageType.WARNING);
         }
     }
 }

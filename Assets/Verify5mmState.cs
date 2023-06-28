@@ -43,12 +43,12 @@ public class Verify5mmState : ATask
         if(_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible() )
         {
             nextTaskId = currentTask + 1;
-            _messageSys.SetMessage("You've chosen the correct sized needle, at least one black line (5mm) is visible.").SetType(MessageType.NOTIFICATION).Show();
+            _messageSys.SetMessage("You've chosen the correct sized needle, at least one black line (5mm) is visible.").SetType(MessageType.NOTIFICATION).SetHasDuration(true).Show();
         }
         else
         {
             nextTaskId = 6;
-            _messageSys.SetMessage("You've chosen the wrong sized needle, choose another needle to proceed with the Intraosseous Insertion.").SetType(MessageType.WARNING).Show();
+            _messageSys.SetMessage("You've chosen the wrong sized needle, choose another needle to proceed with the Intraosseous Insertion.").SetHasDuration(false).SetType(MessageType.WARNING).Show();
         }
         Debug.Log("Is One line visible: " + needle.IsOneLineVisible());
         Debug.Log("Needle state: " + needle.GetCurrentState());

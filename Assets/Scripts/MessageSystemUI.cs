@@ -10,6 +10,7 @@ public class MessageSystemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _messageText;
     [SerializeField] private Image _messageIcon;
     [SerializeField] private float _duration;
+    private bool _hasDuration = true;
 
     [Header("Icons Type")]
     [SerializeField] private Sprite _warningIcon;
@@ -44,21 +45,28 @@ public class MessageSystemUI : MonoBehaviour
         return Instance;
     }
 
-    public void Show()
+    public MessageSystemUI SetDuration(float duration)
     {
-        StartCoroutine(ShowCoroutine());
+        _duration = duration;
+        return Instance;
     }
 
-    IEnumerator ShowCoroutine()
+    public MessageSystemUI SetHasDuration(bool value)
+    {
+        _hasDuration = value;
+        return Instance;
+    }
+
+    public void Show()
     {
         _messageText.text = message.Text;
         switch (message.Type)
         {
             case MessageType.NOTIFICATION:
-                _messageIcon.sprite = _notificationIcon; 
+                _messageIcon.sprite = _notificationIcon;
                 break;
             case MessageType.WARNING:
-                _messageIcon.sprite = _warningIcon; 
+                _messageIcon.sprite = _warningIcon;
                 break;
             case MessageType.SUGGESTION:
                 _messageIcon.sprite = _suggestionIcon;
@@ -67,9 +75,21 @@ public class MessageSystemUI : MonoBehaviour
         _messageIcon.color = Color.black;
 
         _canvas.ActivateCanvas();
-        yield return new WaitForSeconds(_duration);
-        _canvas.HideCanvas();
+        if (_hasDuration)
+        {
+            StartCoroutine(ShowCoroutine());
+        }
+    }
 
+    IEnumerator ShowCoroutine()
+    {
+        yield return new WaitForSeconds(_duration);
+        Hide();
+    }
+
+    public void Hide()
+    {
+        _canvas.HideCanvas();
         message = new Message();
     }
 }
