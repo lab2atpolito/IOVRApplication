@@ -45,7 +45,6 @@ namespace Meta.WitAi.TTS.Samples
         [Header("Voice")]
         [SerializeField] private AppVoiceExperience appVoiceExperience;
         [SerializeField] private bool showJson;
-        [SerializeField] private Toggle _voiceToggle;
 
         // Whether voice is activated
         public bool IsActive => _active;
@@ -295,8 +294,6 @@ namespace Meta.WitAi.TTS.Samples
         private void OnListenStop()
         {
             inputField.text = "Processing...";
-            _voiceToggle.animator.SetTrigger("Normal");
-            _voiceToggle.isOn = false;
         }
 
         // Listen stop

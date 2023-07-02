@@ -11,7 +11,7 @@ public class VirtualAssistantUI : MonoBehaviour
 
     [SerializeField] private TMP_InputField _inputField;
     [SerializeField] private Button _sendButton;
-    [SerializeField] private Toggle _voiceButton;
+    [SerializeField] private Button _voiceButton;
 
     public void EnableUI()
     {
