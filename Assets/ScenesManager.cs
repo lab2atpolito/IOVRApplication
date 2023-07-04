@@ -24,6 +24,11 @@ public class ScenesManager : MonoBehaviour
         //StartCoroutine(LoadSceneAsync(1));
     }
 
+    public void StartTutorial()
+    {
+        LoadScene("Tutorial");
+    }
+
     public void StartTheoryModule()
     {
         //LoadScene("TheoryModule");

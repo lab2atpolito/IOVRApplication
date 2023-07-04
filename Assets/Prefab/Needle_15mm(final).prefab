@@ -986,6 +986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
+  _meshRenderer: {fileID: 0}
+  _lineMaterial: {fileID: 0}
   _drill: {fileID: 0}
 --- !u!1 &1371132305582245582
 GameObject:

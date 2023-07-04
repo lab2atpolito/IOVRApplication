@@ -13,8 +13,8 @@ public class Syringe : MonoBehaviour, IHandGrabUseDelegate
 
     [SerializeField] private Material _filling;
 
-    private bool _isConnected;
-    private bool _isFlushed;
+    public bool _isConnected = false;
+    private bool _isFlushed = false;
 
     private float _resistanceValue;
     private float _pressingSpeed = 0.2f;
@@ -79,7 +79,6 @@ public class Syringe : MonoBehaviour, IHandGrabUseDelegate
     void Start()
     {
         _state = SyringeState.RELEASED;
-        _isConnected = false;
         _isFlushed = false;
         _pressingValue = 0f;
         _resistanceValue = 0f;

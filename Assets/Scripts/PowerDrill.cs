@@ -141,6 +141,8 @@ public class PowerDrill : MonoBehaviour, IHandGrabUseDelegate
     public void Release()
     {
         _state = DrillState.RELEASED;
+        _drillingSound.Stop();
+        _isDrilling = false;
         Debug.Log("Drill state: "+ _state);
     }
 
