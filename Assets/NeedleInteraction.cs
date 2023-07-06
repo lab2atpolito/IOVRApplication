@@ -54,7 +54,7 @@ public class NeedleInteraction : MonoBehaviour
     //[SerializeField] private Color _paintColor;
 
     private bool _isStyletAttached = true;
-
+    [SerializeField] private TasksManager _simulation;
     //private bool _drawnBlood = false;
 
     void Start()
@@ -199,9 +199,10 @@ public class NeedleInteraction : MonoBehaviour
             else
                 _hasReachedMaxDepth = true;
 
+            State newState;
             if (tipDistance < hitDistance)
             {
-                _currentState = State.IN_AIR;
+                newState = State.IN_AIR;
                 //_skinSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
             }
             else
@@ -212,39 +213,45 @@ public class NeedleInteraction : MonoBehaviour
                     float boneHitDistance = ((RaycastHit)layerHitPoints[LayerType.BONE]).distance;
                     if (tipDistance < boneHitDistance)
                     {
-                        _currentState = State.IN_SKIN;
+                        newState = State.IN_SKIN;
                         //_boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
                     }
                     else
                     {
-                        _currentState = State.IN_BONE;
+                        newState = State.IN_BONE;
                         //_boneSurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
                         if (layerHitPoints.Contains(LayerType.MEDULLARY_CAVITY))
                         {
                             float medHitDistance = ((RaycastHit)layerHitPoints[LayerType.MEDULLARY_CAVITY]).distance;
                             if (tipDistance < medHitDistance)
                             {
-                                _currentState = State.IN_BONE;
+                                newState = State.IN_BONE;
                                 //_medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 0.3f);
                             }
                             else
                             {
-                                _currentState = State.MEDULLARY_CAVITY;
+                                newState = State.MEDULLARY_CAVITY;
                                 //_medullaryCavitySurfaceHitDebug.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.3f);
 
                             }
                         }
                         else
                         {
-                            _currentState = State.IN_BONE;
+                            newState = State.IN_BONE;
                         }
                     }
                 }
                 else
                 {
-                    _currentState = State.IN_SKIN;
+                    newState = State.IN_SKIN;
                 }
-            }       
+            }
+            
+            if( _currentState != newState)
+            {
+                OnStateChange(_currentState, newState);
+                _currentState = newState;
+            }
 
             UpdateAnglePrecision();
             UpdatePositionPrecision(((RaycastHit)layerHitPoints[LayerType.SKIN]));
@@ -260,6 +267,16 @@ public class NeedleInteraction : MonoBehaviour
             {
                 _drawnBlood = false;
             }*/
+        }
+    }
+
+    private void OnStateChange(State current, State newer)
+    {
+        Debug.Log("Current state: " + current);
+        Debug.Log("New state: " + newer);
+        if(current == State.IN_AIR && newer == State.IN_SKIN)
+        {
+            _simulation.IncreasePunctureCount();
         }
     }
 

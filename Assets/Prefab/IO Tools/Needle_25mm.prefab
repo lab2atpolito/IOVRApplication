@@ -1120,6 +1120,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 8596025782426138514}
   _lineMaterial: {fileID: 0}
   _drill: {fileID: 0}
+  _tasksMgr: {fileID: 0}
 --- !u!114 &2876940379919767827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2938,6 +2939,7 @@ MonoBehaviour:
   _originControl: {fileID: 6417050036460916839}
   _drill: {fileID: 0}
   _hasReachedMaxDepth: 0
+  _simulation: {fileID: 0}
 --- !u!114 &2876940379919767830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,7 +3899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6417050035052711145}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.06199, z: 0}
+  m_LocalPosition: {x: -0, y: 0.0633, z: -0}
   m_LocalScale: {x: 0.0038628008, y: 0.0038628008, z: 0.0038628008}
   m_ConstrainProportionsScale: 0
   m_Children: []

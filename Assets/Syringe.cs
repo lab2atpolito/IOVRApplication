@@ -78,7 +78,8 @@ public class Syringe : MonoBehaviour, IHandGrabUseDelegate
     // Start is called before the first frame update
     void Start()
     {
-        _state = SyringeState.RELEASED;
+        _filling.SetFloat("_Fill", 1f);
+       _state = SyringeState.RELEASED;
         _isFlushed = false;
         _pressingValue = 0f;
         _resistanceValue = 0f;

@@ -10,7 +10,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private bool _isTimeOn = false;
     private float _lastTimestamp = 0f;
 
+    [SerializeField] private TasksManager _simulation;
     [SerializeField] private TextMeshProUGUI _currentTimeText;
+    [SerializeField] private TextMeshProUGUI _freeModeTimeText;
 
     void Update()
     {
@@ -18,6 +20,10 @@ public class TimeManager : MonoBehaviour
         {
             _currentTime += Time.deltaTime;
             _currentTimeText.text = GetTimeInString();
+            if (!_simulation.IsGuideActive())
+            {
+                _freeModeTimeText.text = GetTimeInString();
+            }
         }
     }
 

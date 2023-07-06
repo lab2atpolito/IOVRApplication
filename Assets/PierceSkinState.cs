@@ -10,9 +10,6 @@ public class PierceSkinState : ATask
     [SerializeField] private CanvaAnimator _precisionCanva;
     [SerializeField] private MessageSystemUI _messageSys;
 
-    //private NeedleInteraction _needleInteractionMgr;
-    //private Needle _needle;
-
     [SerializeField] private GameObject[] _handGrabs;
 
     private void Start()

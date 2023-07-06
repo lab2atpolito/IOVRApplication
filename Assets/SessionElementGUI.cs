@@ -30,7 +30,7 @@ public class SessionElementGUI : MonoBehaviour
         _levelThree = levelThree;
 
         _sessionData = sessionData;
-        _sessionIdText.text = "Simulation Session n. " + sessionID.ToString();
+        _sessionIdText.text = sessionData.sessionType + " Simulation Session n. " + sessionID.ToString();
         _dateText.text = "Date: " + _sessionData.date;
         _scoreText.text = "Score: " + _sessionData.score.ToString();
     }

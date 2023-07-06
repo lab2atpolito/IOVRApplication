@@ -12,18 +12,20 @@ public class SimulationSaveData
     public string totalTime;
     public SerializableList<string> tasksTime;
     public string averageTimePerTask;
+    public int puncturesCount;
     public float positionPrecision;
     public float inclinationPrecision;
     public int score;
 
     public SimulationSaveData(string sessionType, string date, string username, string totalTime,  List<string> tasksTime, string averageTimePerTask,
-        float positionPrecision, float inclinationPrecision, int score)
+        int puncturesCount, float positionPrecision, float inclinationPrecision, int score)
     {
         this.sessionType = sessionType;
         this.date = date;
         this.username = username;
         this.totalTime = totalTime;
         this.tasksTime = new SerializableList<string>(tasksTime);
+        this.puncturesCount = puncturesCount;
         this.positionPrecision = positionPrecision;
         this.inclinationPrecision = inclinationPrecision;
         this.score = score;
@@ -37,6 +39,7 @@ public class SimulationSaveData
             "Date: " + date + "\n" +
             "username: " + username + "\n" +
             "Total time: " + totalTime + "\n" +
+            "Punctures Count: " + puncturesCount + "\n" +
             "Position precision: " + positionPrecision + "\n" +
             "Inclination precision: " + inclinationPrecision + "\n" +
             "Score: " + score + "\n";

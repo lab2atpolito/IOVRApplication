@@ -27,7 +27,7 @@ public class RemoveSafetyCapState : ATask
 
         if (controller.IsGuideActive())
         {
-            _drill.GetNeedle().GetComponentInChildren<Interactable>().EnableMaterial();
+            _drill.GetNeedle().GetSafetyCap().GetComponent<Interactable>().EnableMaterial();
             controller.DisableButton();
             _tts.SpeakQueued(_speakingText);
             _virtualAssistantText.text = _speakingText;

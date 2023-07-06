@@ -15,6 +15,8 @@ public class Needle : MonoBehaviour
     public Material _lineMaterial;
 
     [SerializeField] private PowerDrill _drill;
+    [SerializeField] private TasksManager _tasksMgr;
+    [SerializeField] private GameObject _safetyCap;
 
     private void Start()
     {
@@ -63,8 +65,10 @@ public class Needle : MonoBehaviour
     public void Snap()
     {
         _drill.InsertNeedle(this);
+        _tasksMgr.SetNeedle(this);
         _state = NeedleState.SNAPPED;
         Debug.Log(_type + " Needle State: " + _state);
+        Debug.Log("Chosen Needle: " + _tasksMgr.GetNeedle());
     }
 
     public void ClearParent()
@@ -85,6 +89,11 @@ public class Needle : MonoBehaviour
     public NeedleType GetNeedleType()
     {
         return _type;
+    }
+
+    public GameObject GetSafetyCap()
+    {
+        return _safetyCap;
     }
 
     public void RemoveSafetyCap()

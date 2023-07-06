@@ -39,10 +39,6 @@ public class ConnectSyringeState : ATask
 
     public override void OnExit(TasksManager controller)
     {
-        foreach (GameObject handGrab in _handGrabsConnector)
-        {
-            handGrab.SetActive(false);
-        }
     }
 
     public override void OnUpdate(TasksManager controller)
@@ -50,6 +46,12 @@ public class ConnectSyringeState : ATask
         if (_connector.IsSnapped() && !_isCompleted)
         {
             _isCompleted = true;
+
+            foreach (GameObject handGrab in _handGrabsConnector)
+            {
+                handGrab.SetActive(false);
+            }
+
             if (controller.IsGuideActive())
                 controller.EnableButton();
             else

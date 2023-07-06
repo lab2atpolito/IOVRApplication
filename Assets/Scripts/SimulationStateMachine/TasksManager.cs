@@ -53,6 +53,8 @@ public class TasksManager : MonoBehaviour
 
     public bool _isGuideActive;
 
+    private int _puncturesCount = 0;
+
     private void Start()
     {
         _savedData = SavingSystem.LoadData();
@@ -128,7 +130,7 @@ public class TasksManager : MonoBehaviour
             sessionType = "Free";
 
         // Save the current session infromation on a .json file
-        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime,  _positionPrecision, _inclinationPrecision, _score);
+        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score);
         SavingSystem.Save(_currentUsername, sessionType, simulationData);
         //Debug.Log(simulationData.ToString());
     }
@@ -238,5 +240,11 @@ public class TasksManager : MonoBehaviour
     public void UpdateSoundsVolume(float value)
     {
         _audioMgr.UpdateSoundsVolume(value);
+    }
+
+    public void IncreasePunctureCount()
+    {
+        _puncturesCount += 1;
+        Debug.Log("Puncture count: " + _puncturesCount);
     }
 }

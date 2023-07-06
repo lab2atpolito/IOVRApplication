@@ -72,7 +72,8 @@ public class PenetrateBoneState : ATask
 
                 if (_drill.GetNeedle().GetNeedleType() == NeedleType.BLUE)
                 {
-                    controller.NextTask();
+                    if( !controller.IsGuideActive() )
+                        controller.NextTask();
                     _messageSys.SetMessage("The tip of the needle has successfully reached the medullary cavity of the bone!").SetType(MessageType.NOTIFICATION).Show(true);
                 }
 
