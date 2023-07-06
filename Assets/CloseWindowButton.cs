@@ -6,6 +6,7 @@ public class CloseWindowButton : MonoBehaviour
 {
     [SerializeField] private Transform _tasksCanvas;
     [SerializeField] private Transform _completedCanvas;
+    [SerializeField] private GameObject _menuPanel;
 
     [SerializeField] private Transform _pauseCanvas;
 
@@ -14,11 +15,15 @@ public class CloseWindowButton : MonoBehaviour
     public void OnClick()
     {
         _pauseCanvas.gameObject.SetActive(false);
-        if( _simulation.IsStarted() )
+        if(_simulation.IsStarted() && _simulation.IsGuideActive())
         {
             _tasksCanvas.gameObject.SetActive(true);
         }
-        else
+        else if(_simulation.IsStarted() && !_simulation.IsGuideActive())
+        {
+            _menuPanel.SetActive(true);
+        }
+        else if(!_simulation.IsStarted())
         {
             _completedCanvas.gameObject.SetActive(true);
         }

@@ -11,13 +11,17 @@ public class RemoveAdhesive_State : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
         foreach (GameObject handGrab in _handGrabs)
         {
             handGrab.SetActive(true);
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+
+        if (controller.IsGuideActive())
+        {
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
@@ -29,7 +33,10 @@ public class RemoveAdhesive_State : ATask
         if (!_sticker1.IsAttached() && !_sticker2.IsAttached() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
     }

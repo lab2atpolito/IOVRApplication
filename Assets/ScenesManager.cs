@@ -18,9 +18,12 @@ public class ScenesManager : MonoBehaviour
         audioMgr.UpdateAudioManager();
     }
 
-    public void StartSimulation()
+    public void StartSimulation(bool isGuided)
     {
-        LoadScene("Simulation");
+        if (isGuided)
+            LoadScene("Simulation");
+        else
+            LoadScene("Free Mode");
         //StartCoroutine(LoadSceneAsync(1));
     }
 

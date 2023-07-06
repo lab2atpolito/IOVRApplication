@@ -7,6 +7,7 @@ public class RemoveSafetyCapState : ATask
     [SerializeField] private PowerDrill _drill;
 
     [SerializeField] private GameObject[] _handGrabs;
+    [SerializeField] private GameObject[] _handGrabsNeedles;
 
     private TasksManager _simulation; 
 
@@ -23,15 +24,25 @@ public class RemoveSafetyCapState : ATask
         {
             handGrab.SetActive(true);
         }
-        _drill.GetNeedle().GetComponentInChildren<Interactable>().EnableMaterial();
-        controller.DisableButton();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+
+        if (controller.IsGuideActive())
+        {
+            _drill.GetNeedle().GetComponentInChildren<Interactable>().EnableMaterial();
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
     {
-        //_simulation.AddTaskTimestamp();
+        /*if (controller.IsGuideActive())
+        {
+            foreach (GameObject handGrabNeedle in _handGrabsNeedles)
+            {
+                handGrabNeedle.SetActive(true);
+            }
+        }*/
     }
 
     public override void OnUpdate(TasksManager controller)
@@ -39,7 +50,10 @@ public class RemoveSafetyCapState : ATask
         if (!_drill.GetNeedle().HasSafetyCap() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
     }

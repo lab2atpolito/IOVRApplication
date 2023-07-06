@@ -18,12 +18,15 @@ public class GrabDrillState : ATask
 
     public override void OnEntry(TasksManager controller)
     {
-        foreach(GameObject handGrab in _handGrabs)
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            foreach (GameObject handGrab in _handGrabs)
+            {
+                handGrab.SetActive(true);
+            }
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
     }
 
     public override void OnExit(TasksManager controller)
@@ -36,13 +39,17 @@ public class GrabDrillState : ATask
         if(_drill.IsGrabbed() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(!_drill.IsGrabbed())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

@@ -19,14 +19,18 @@ public class RemoveDrillState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        controller.GetNeedle().GetComponent<Interactable>().EnableMaterial();
         foreach(GameObject handGrab in _handGrabs)
         {
             handGrab.SetActive(true);
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+
+        if (controller.IsGuideActive())
+        {
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+            controller.DisableButton();
+            controller.GetNeedle().GetComponent<Interactable>().EnableMaterial();
+        }
     }
 
     public override void OnExit(TasksManager controller)
@@ -43,7 +47,10 @@ public class RemoveDrillState : ATask
         if (_drill.IsEmpty() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
     }

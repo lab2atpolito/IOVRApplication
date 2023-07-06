@@ -19,13 +19,17 @@ public class StabilizerPreparationState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        foreach (GameObject handGrab in _handGrabs)
+
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            controller.DisableButton();
+            foreach (GameObject handGrab in _handGrabs)
+            {
+                handGrab.SetActive(true);
+            }
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
         //_stabilizer.GetComponentsInChildren<Sticker>();
     }
 
@@ -38,13 +42,17 @@ public class StabilizerPreparationState : ATask
         if (_stabilizer.IsGrabbed() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if (!_stabilizer.IsGrabbed())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

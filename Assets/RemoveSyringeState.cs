@@ -22,9 +22,13 @@ public class RemoveSyringeState : ATask
         {
             handGrab.SetActive(true);
         }
-        controller.DisableButton();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+
+        if (controller.IsGuideActive())
+        {
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
@@ -37,13 +41,17 @@ public class RemoveSyringeState : ATask
         if(!_connector.IsSnapped() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if (_connector.IsSnapped())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if (controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

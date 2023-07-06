@@ -16,11 +16,14 @@ public class Verify5mmState : ATask
 
     public override void OnEntry(TasksManager controller)
     {
-        controller.DisableButton();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+        if (controller.IsGuideActive())
+        {
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+            StartCoroutine(Wait(5f, controller));
+        }
         _needle = _drill.GetNeedle();
-        StartCoroutine(Wait(5f, controller));
     }
 
     public override void OnExit(TasksManager controller)

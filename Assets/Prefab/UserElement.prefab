@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _usernameText: {fileID: 5257208453875807127}
+  _sessionTypeText: {fileID: 5257208454757017408}
   _sessionsNumberText: {fileID: 5257208454711581364}
   _sessionElementPrefab: {fileID: 2295784338194911458, guid: 2152440ca384d4058bd4e71606112a6c,
     type: 3}

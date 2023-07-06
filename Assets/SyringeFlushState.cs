@@ -15,9 +15,12 @@ public class SyringeFlushState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+        if (controller.IsGuideActive())
+        {
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
@@ -30,7 +33,10 @@ public class SyringeFlushState : ATask
         if(_syringe.IsFlushed() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
             _messageSys.SetMessage("You've successfully flushed the 10 ml syringe of saline solution into the medullary cavity of the bone.").SetType(MessageType.NOTIFICATION).Show(true);
         }

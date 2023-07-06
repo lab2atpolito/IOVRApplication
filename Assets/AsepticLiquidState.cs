@@ -18,15 +18,16 @@ public class AsepticLiquidState : ATask
 
     public override void OnEntry(TasksManager controller)
     {
-        controller.DisableButton();
-
-        foreach(GameObject handGrab in _handGrabs)
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            foreach (GameObject handGrab in _handGrabs)
+            {
+                handGrab.SetActive(true);
+            }
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
-
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
     }
 
     public override void OnExit(TasksManager controller)
@@ -39,7 +40,10 @@ public class AsepticLiquidState : ATask
         if(_cottonInteraction.isAbsorbing() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
     }

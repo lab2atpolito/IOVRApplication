@@ -19,13 +19,17 @@ public class ConnectorToStabilizerState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        foreach(GameObject handGrab in _handGrabs)
+
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            controller.DisableButton();
+            foreach (GameObject handGrab in _handGrabs)
+            {
+                handGrab.SetActive(true);
+            }
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
     }
 
     public override void OnExit(TasksManager controller)
@@ -42,13 +46,17 @@ public class ConnectorToStabilizerState : ATask
         if (_connector.IsSnapped() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(!_connector.IsSnapped())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

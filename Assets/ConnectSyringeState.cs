@@ -20,17 +20,21 @@ public class ConnectSyringeState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        foreach(GameObject handGrab in _handGrabsSyringe)
+
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            controller.DisableButton();
+            foreach (GameObject handGrab in _handGrabsSyringe)
+            {
+                handGrab.SetActive(true);
+            }
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
         foreach (GameObject handGrab in _handGrabsConnector)
         {
             handGrab.SetActive(true);
         }
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
     }
 
     public override void OnExit(TasksManager controller)
@@ -46,13 +50,17 @@ public class ConnectSyringeState : ATask
         if (_connector.IsSnapped() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(!_connector.IsSnapped())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

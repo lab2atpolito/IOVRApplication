@@ -11,7 +11,8 @@ public class LoadingSimulationUI : MonoBehaviour
     [SerializeField] private GameObject _countdownCanvas;
     [SerializeField] private GameObject _taskCanvas;
     [SerializeField] private TasksManager _simulation;
-    
+    [SerializeField] private GameObject _menuPanel;
+
     public void StartLoading()
     {
         StartCoroutine(StartLoadingCoroutine());
@@ -33,7 +34,10 @@ public class LoadingSimulationUI : MonoBehaviour
         }
 
         // Start simulation
-        _taskCanvas.SetActive(true);
+        if (_simulation.IsGuideActive())
+            _taskCanvas.SetActive(true);
+        else
+            _menuPanel.SetActive(true);
         _countdownCanvas.SetActive(false);
         _simulation.StartSimulation();
     }

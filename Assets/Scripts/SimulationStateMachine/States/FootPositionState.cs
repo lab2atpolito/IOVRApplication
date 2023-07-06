@@ -22,16 +22,23 @@ public class FootPositionState : ATask
         _handGrabL.SetActive(true);
         _handGrabR.SetActive(true);
         timeManager.StartTimer();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
-        _suggestionLegMesh.SetActive(true);
+
+        if (controller.IsGuideActive())
+        {
+            _suggestionLegMesh.SetActive(true);
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
     {
-        _handGrabL.SetActive(false);
-        _handGrabR.SetActive(false);
-        _suggestionLegMesh.SetActive(false);
+        if (controller.IsGuideActive())
+        {
+            _handGrabL.SetActive(false);
+            _handGrabR.SetActive(false);
+            _suggestionLegMesh.SetActive(false);
+        }
     }
 
     public override void OnUpdate(TasksManager controller)
@@ -39,13 +46,18 @@ public class FootPositionState : ATask
         if(_suggestionLeg.HasReachedTarget() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(!_suggestionLeg.HasReachedTarget())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

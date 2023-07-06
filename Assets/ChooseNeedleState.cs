@@ -23,22 +23,24 @@ public class ChooseNeedleState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        // Enable the possibility to grab the needles
-        foreach(GameObject handGrab in _handGrabs)
+
+        if (controller.IsGuideActive())
         {
-            handGrab.SetActive(true);
+            // Enable the possibility to grab the needles
+            foreach (GameObject handGrab in _handGrabs)
+            {
+                handGrab.SetActive(true);
+            }
+
+            // Enable the possibility to snap the needle to power drill
+            foreach (Collider collider in _needleSnapping)
+            {
+                collider.enabled = true;
+            }
+
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
         }
-
-        // Enable the possibility to snap the needle to power drill
-        foreach (Collider collider in _needleSnapping)
-        {
-            collider.enabled = true;
-        }
-
-        _precisionUI.SetActive(false);
-
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
     }
 
     public override void OnExit(TasksManager controller)
@@ -65,13 +67,17 @@ public class ChooseNeedleState : ATask
         if (!_drill.IsEmpty() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(_drill.IsEmpty())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

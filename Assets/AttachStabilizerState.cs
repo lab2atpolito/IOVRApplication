@@ -11,9 +11,13 @@ public class AttachStabilizerState : ATask
     public override void OnEntry(TasksManager controller)
     {
         _isCompleted = false;
-        controller.DisableButton();
-        _tts.SpeakQueued(_speakingText);
-        _virtualAssistantText.text = _speakingText;
+
+        if (controller.IsGuideActive())
+        {
+            controller.DisableButton();
+            _tts.SpeakQueued(_speakingText);
+            _virtualAssistantText.text = _speakingText;
+        }
     }
 
     public override void OnExit(TasksManager controller)
@@ -29,13 +33,17 @@ public class AttachStabilizerState : ATask
         if (_stabilizer.IsAttached() && !_isCompleted)
         {
             _isCompleted = true;
-            controller.EnableButton();
+            if (controller.IsGuideActive())
+                controller.EnableButton();
+            else
+                controller.NextTask();
             controller.PlayTaskCompletedSound();
         }
         else if(!_stabilizer.IsAttached())
         {
             _isCompleted = false;
-            controller.DisableButton();
+            if(controller.IsGuideActive())
+                controller.DisableButton();
         }
     }
 }

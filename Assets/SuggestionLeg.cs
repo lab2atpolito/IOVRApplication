@@ -13,6 +13,8 @@ public class SuggestionLeg : MonoBehaviour
     [SerializeField] private float _startOpacityValue;
     [SerializeField] private float _endOpacityValue;
 
+    [SerializeField] private TasksManager _simulation;
+
     private bool _reachedTarget;
 
     private void Start()
@@ -26,7 +28,10 @@ public class SuggestionLeg : MonoBehaviour
         if( other.gameObject.tag == "LegMover")
         {
             _reachedTarget = true;
-            DisableLeg();
+            if (_simulation.IsGuideActive())
+            {
+                DisableLeg();
+            }
         }
     }
 
@@ -35,7 +40,10 @@ public class SuggestionLeg : MonoBehaviour
         if (other.gameObject.tag == "LegMover")
         {
             _reachedTarget = false;
-            EnableLeg();
+            if (_simulation.IsGuideActive())
+            {
+                EnableLeg();
+            }
         }
     }
 

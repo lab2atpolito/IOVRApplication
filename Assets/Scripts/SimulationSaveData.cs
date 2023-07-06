@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class SimulationSaveData
 {
+    public string sessionType;
     public string date;
     public string username;
     public string totalTime;
@@ -15,9 +16,10 @@ public class SimulationSaveData
     public float inclinationPrecision;
     public int score;
 
-    public SimulationSaveData(string date, string username, string totalTime,  List<string> tasksTime, string averageTimePerTask,
+    public SimulationSaveData(string sessionType, string date, string username, string totalTime,  List<string> tasksTime, string averageTimePerTask,
         float positionPrecision, float inclinationPrecision, int score)
     {
+        this.sessionType = sessionType;
         this.date = date;
         this.username = username;
         this.totalTime = totalTime;
@@ -31,6 +33,7 @@ public class SimulationSaveData
     public override string ToString()
     {
         return
+            "Session Type" + sessionType + "\n" +
             "Date: " + date + "\n" +
             "username: " + username + "\n" +
             "Total time: " + totalTime + "\n" +

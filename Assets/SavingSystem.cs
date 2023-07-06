@@ -62,7 +62,7 @@ public static class SavingSystem
         return saveData;
     }
 
-    public static void Save(string username, SimulationSaveData simulationData)
+    public static void Save(string username, string sessionType, SimulationSaveData simulationData)
     {
         string folderPath = Path.Combine(Application.persistentDataPath, "SaveData", username);
 
@@ -73,7 +73,7 @@ public static class SavingSystem
 
         int simulationNumber = Directory.GetFiles(folderPath, "*.json").Length;
 
-        string filePath = Path.Combine(folderPath, "simulation_" + simulationNumber + ".json");
+        string filePath = Path.Combine(folderPath, sessionType + "_simulation_" + simulationNumber + ".json");
         string jsonData = JsonUtility.ToJson(simulationData);
 
         File.WriteAllText(filePath, jsonData);

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Oculus;
+using Oculus.Interaction.Grab;
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 public class DrillCase : MonoBehaviour
@@ -12,7 +14,10 @@ public class DrillCase : MonoBehaviour
     [SerializeField]
     private float _openingAngle = 50f;
 
+    [SerializeField] private TasksManager _controller;
+
     [SerializeField] private DrillCaseState _state;
+    [SerializeField] private GameObject[] _handsGrab;
 
     private void Start()
     {
@@ -34,11 +39,25 @@ public class DrillCase : MonoBehaviour
         if(angle > _openingAngle && _state == DrillCaseState.CLOSED)
         {
             _state = DrillCaseState.OPENED;
+            if (!_controller.IsGuideActive())
+            {
+                foreach(GameObject intercatable in _handsGrab)
+                {
+                    intercatable.SetActive(true);
+                }
+            }
             Debug.Log("Drill Case OPENED!");
         }
         else if( angle < _openingAngle && _state == DrillCaseState.OPENED)
         {
             _state = DrillCaseState.CLOSED;
+            if (!_controller.IsGuideActive())
+            {
+                foreach (GameObject intercatable in _handsGrab)
+                {
+                    intercatable.SetActive(false);
+                }
+            }
             Debug.Log("Drill Case CLOSED!");
         }
     }

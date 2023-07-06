@@ -21,6 +21,11 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private Button _nextButton;
     [SerializeField] private GameObject _completeSceneCanva;
 
+    public bool IsGuideActive()
+    {
+        return _isGuideActive;
+    }
+
     //[SerializeField] private Vector3 _maxCanvasScale;
     //[SerializeField] private float _animationDuration;
 
@@ -46,6 +51,8 @@ public class TasksManager : MonoBehaviour
 
     private SaveData _savedData;
 
+    public bool _isGuideActive;
+
     private void Start()
     {
         _savedData = SavingSystem.LoadData();
@@ -58,10 +65,13 @@ public class TasksManager : MonoBehaviour
         _time.StartTimer();
 
         _tasks[_currentTaskIndex].OnEntry(this);
-        _tasks[_currentTaskIndex].EnableSuggestions();
 
-        InTaskGUI(_tasks[_currentTaskIndex].GetDescription());
-        Debug.Log("Simulation started!");
+        if( _isGuideActive)
+        {
+            _tasks[_currentTaskIndex].EnableSuggestions();
+            InTaskGUI(_tasks[_currentTaskIndex].GetDescription());
+        }
+        //Debug.Log("Simulation started!");
     }
 
     void Update()
@@ -78,7 +88,11 @@ public class TasksManager : MonoBehaviour
         _isStarted = false;
         _time.StopTimer();
 
-        OutTaskGUI();
+        if( _isGuideActive)
+        {
+            OutTaskGUI();
+        }
+
         _completeSceneCanva.SetActive(true);
         Debug.Log("Simulation completed!");
 
@@ -107,27 +121,40 @@ public class TasksManager : MonoBehaviour
         TimeSpan averageTimeSpan = TimeSpan.FromSeconds(averageTimePerTask);
         string formattedAverageTime = averageTimeSpan.Minutes.ToString("d2") + ":" + averageTimeSpan.Seconds.ToString("d2");
 
+        string sessionType;
+        if (_isGuideActive)
+            sessionType = "Guided";
+        else
+            sessionType = "Free";
+
         // Save the current session infromation on a .json file
-        SimulationSaveData simulationData = new SimulationSaveData(DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime,  _positionPrecision, _inclinationPrecision, _score);
-        SavingSystem.Save(_currentUsername, simulationData);
-        Debug.Log(simulationData.ToString());
+        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime,  _positionPrecision, _inclinationPrecision, _score);
+        SavingSystem.Save(_currentUsername, sessionType, simulationData);
+        //Debug.Log(simulationData.ToString());
     }
 
     public void NextTask()
     {
         _tasks[_currentTaskIndex].OnExit(this);
-        _tasks[_currentTaskIndex].DisableSuggestions();
+
+        if( _isGuideActive )
+            _tasks[_currentTaskIndex].DisableSuggestions();
+
         _tasks[_currentTaskIndex].SetAsCompleted();
 
         _currentTaskIndex = _tasks[_currentTaskIndex].GetNextTaskId(_currentTaskIndex);
-        Debug.Log("Current Task Id: " + _currentTaskIndex);
+        //Debug.Log("Current Task Id: " + _currentTaskIndex);
         //Debug.Log("Current task index: " + _currentTaskIndex + " < " + _tasks.Count);
 
         if (_currentTaskIndex < _tasks.Count)
         {
             _tasks[_currentTaskIndex].OnEntry(this);
-            _tasks[_currentTaskIndex].EnableSuggestions();
-            UpdateTaskGUI(_tasks[_currentTaskIndex].GetDescription());
+
+            if( _isGuideActive)
+            {
+                _tasks[_currentTaskIndex].EnableSuggestions();
+                UpdateTaskGUI(_tasks[_currentTaskIndex].GetDescription());
+            }
         }
         else {
             EndSimulation();
@@ -189,11 +216,13 @@ public class TasksManager : MonoBehaviour
     }
     public void EnableButton()
     {
-        _nextButton.interactable = true;
+        if( _isGuideActive )
+            _nextButton.interactable = true;
     }
     public void DisableButton()
     {
-        _nextButton.interactable = false;
+        if( _isGuideActive )
+            _nextButton.interactable = false;
     }
 
     public void ToggleBackground()

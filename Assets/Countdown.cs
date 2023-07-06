@@ -24,7 +24,9 @@ public class Countdown : MonoBehaviour
         }
 
         // Start simulation
-        _taskCanvas.SetActive(true);
+        if(_simulation.IsGuideActive())
+            _taskCanvas.SetActive(true);
+
         _countdownCanvas.SetActive(false);
         _simulation.StartSimulation();
     }
