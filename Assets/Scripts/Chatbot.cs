@@ -1,19 +1,19 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
 using TMPro;
 using Meta.WitAi.TTS.Utilities;
 using Oculus.Voice;
 using Meta.WitAi.Json;
+using System.Collections.Generic;
+using Meta.WitAi;
+using OpenAI;
 
-// wit + openai
 
 // A struct to help in creating the Json object to be sent to the rasa server
 public class PostMessageJson
 {
-    public string message;
+    public string msg;
     public string sender;
 }
 
@@ -51,9 +51,12 @@ namespace Meta.WitAi.TTS.Samples
         // Whether voice is activated
         public bool IsActive => _active;
         private bool _active = false;
-
-        private const string rasa_url = "http://localhost:5005/webhooks/rest/webhook";
     
+        private OpenAIApi openai = new OpenAIApi();
+
+        private List<ChatMessage> messages = new List<ChatMessage>();
+        private string prompt = "You are a helpful assistant specialized in intraosseous injections. Give short, concise answers. If asked question that are out of context, don't provide the answer and suggest the user to quit the game if they are done asking questions on intraosseous injections. When the user asks to see something, always write 'Now you will be able to see' and then the name of the object";
+        
         [SerializeField] public TTSSpeaker _speaker;
 
         [SerializeField] private GameObject _drillingInclinationSuggestion;
@@ -67,136 +70,110 @@ namespace Meta.WitAi.TTS.Samples
 
         void Start ()
         {
+            Debug.Log("In Start");
             npcText.text = "Hey! I'll be your virtual assistant during the Intraosseous Insertion simulation." +
                 " Please enter your name in the window in front of you to start the simulation " +
                 "and feel free to ask me any questions if you have any doubts.";
             StartCoroutine(Wait(3f));
         }
-  
-
-
-        public void SendMessageToRasa(string s)
+        
+        
+        private async void SendMessageToRasa()
         {
-            //Debug.Log("Input: " + s);
-             if (s != "") {
-            //inputField.text = s;
-            // Create a json object from user message
-            PostMessageJson postMessage = new PostMessageJson
+            Debug.Log("In SendMessageToRasa");
+            Debug.Log("Input field:" + inputField.text);
+            /*if (npcText != null)
             {
-                sender = "user",
-                message = s
-            };
-
-            string jsonBody = JsonUtility.ToJson(postMessage);
-            print("User json : " + jsonBody);
-
-            // Create a post request with the data to send to Rasa server
-            StartCoroutine(PostRequest(rasa_url, jsonBody));
-            }
-        }
-
-         public void SendMessageToRasa () {
-            // get user messasge from input field, create a json object 
-            // from user message and then clear input field
-            string s = inputField.text;
-            inputField.text = "";
-
-            // if user message is not empty, send message to bot
-            if (s != "") {
-                // create json from message
-                PostMessageJson postMessage = new PostMessageJson {
-                    sender = "user",
-                    message = s
-                };
-                string jsonBody = JsonUtility.ToJson(postMessage);
-
-            
+                npcText.text = "message received";  
+            }*/
            
-
-                // Create a post request with the data to send to Rasa server
-                StartCoroutine(PostRequest(rasa_url, jsonBody));
-            }
-        }
-
-        private IEnumerator PostRequest(string url, string jsonBody)
-        {
-            using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+            var newMessage = new ChatMessage()
             {
-                byte[] rawBody = new System.Text.UTF8Encoding().GetBytes(jsonBody);
-                request.uploadHandler = (UploadHandler)new UploadHandlerRaw(rawBody);
-                request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-                request.SetRequestHeader("Content-Type", "application/json");
+                Role = "user",
+                Content = inputField.text
+            };
+            
+            Debug.Log("newMessage:" + newMessage);
+            
 
-                yield return request.SendWebRequest();
-
-                ReceiveResponse(request.downloadHandler.text);
-            }
-        }
-
-        public void ReceiveResponse(string response)
-        {
-            // Deserialize response recieved from the bot
-            RootReceiveMessageJson root = JsonUtility.FromJson<RootReceiveMessageJson>("{\"messages\":" + response + "}");
-
-            if (root.messages != null && root.messages.Length > 0)
+            if (messages.Count == 0) newMessage.Content = prompt + "\n" + inputField.text; 
+            
+            messages.Add(newMessage);
+            
+            //button.enabled = false;
+            inputField.text = "";
+            inputField.enabled = false;
+            
+            // Complete the instruction
+            var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Debug.Log("Bot: " + root.messages[0].text);
+                Model = "ft:gpt-4o-mini-2024-07-18:personal:io-ninth-experiment:ANKYh9cF",
+                Messages = messages
+            });
 
-                // Display the bot's response
-                npcText.text = root.messages[0].text;
-
-                // Speak the bot's response using Text-to-Speech
-                _speaker.SpeakQueued(root.messages[0].text);
-
-                string text = root.messages[0].text;
-                if (text == "Now you will be able to see the correct insertion point for the needle on the patient's leg")
+            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+            {
+                var message = completionResponse.Choices[0].Message;
+                message.Content = message.Content.Trim();
+                
+                messages.Add(message);
+                npcText.text = message.Content;
+                _speaker.SpeakQueued(message.Content);
+                
+                
+                string text = message.Content;
+                if (text.Contains("able to see") && text.Contains("access point"))
                 {
                     SetActiveSuggestion(_insertionPositionSuggestion);
                 }
-                else if (text == "Now you will be able to see a blue-colored line on the scene indicating the correct angle of the drill")
+                else if (text.Contains("able to see") && (text.Contains("angle")||text.Contains("inclination")))
                 {
                     SetActiveSuggestion(_drillingInclinationSuggestion);
                 }
-                else if (text == "Now you will be able to see on the selected needle the white line which can help you to verify that the needle is inserted correctly")
+                else if (text.Contains("able to see") && text.Contains("needle") && text.Contains("correct") && text.Contains("insert"))
                 {
                     Needle needle = _drill.GetComponent<PowerDrill>().GetNeedle();
                     EnableLine(needle);
                     Debug.Log("ENTRATO");
                 }
-                else if(text == "Now you will be able to see in the scene the 15mm needle set outlined")
+                else if(text.Contains("able to see") && text.Contains("15mm"))
                 {
                     EnableSuggestion(_15mmNeedle);
                 }
-                else if(text == "Now you will be able to see in the scene the 25mm needle set outlined")
+                else if(text.Contains("able to see") && text.Contains("25mm"))
                 {
                     EnableSuggestion(_25mmNeedle);
                 }
-                else if(text == "Now you will be able to see in the scene the 45mm needle set outlined")
+                else if(text.Contains("able to see") && text.Contains("40mm"))
                 {
                     EnableSuggestion(_40mmNeedle);
                 }
-                else if(text == "Now you will be able to see on the floor the EZ Connect extension set outlined")
+                else if(text.Contains("able to see") && (text.Contains("Connect") || text.Contains("connect")))
                 {
                     EnableSuggestion(_connector);
                 }
-                else if(text == "Now you will be able to see on the floor the EZ Stabilizer dressing outlined")
+                else if(text.Contains("able to see") && (text.Contains("Stabilizer") || text.Contains("stabilize")))
                 {
                     EnableSuggestion(_stabilizer);
                 }     
-                else if(text == "Now you will be able to see in the scene the EZ-IO Power Driver outlined")
+                else if(text.Contains("able to see") && (text.Contains("Power") || text.Contains("power")))
                 {
                     EnableSuggestion(_drill);
                 }
             }
             else
             {
-                Debug.LogWarning("No messages received from the bot.");
+                Debug.LogWarning("No text was generated from this prompt.");
             }
 
+            //button.enabled = true;
+            inputField.enabled = true;
         }
+        
 
         private IEnumerator Wait(float seconds)
         {
+            Debug.Log("In Wait");
             yield return new WaitForSeconds(seconds);  // Wait for 20 seconds
             _speaker.SpeakQueued(npcText.text);
         }
@@ -218,6 +195,7 @@ namespace Meta.WitAi.TTS.Samples
 
         IEnumerator EnableSuggestionCoroutine(GameObject gameObject)
         {
+            Debug.Log("In EnableSuggestionCoroutine");
             gameObject.GetComponent<Outline>().enabled = true;
             //Play audio
             yield return new WaitForSeconds(20f);
@@ -226,6 +204,7 @@ namespace Meta.WitAi.TTS.Samples
 
         IEnumerator EnableBlueLineCoroutine(Needle needle)
         {
+            Debug.Log("In EnableBlueLineCoroutine");
             needle.ShowLine();
             yield return new WaitForSeconds(40f);
             needle.HideLine();
@@ -233,6 +212,7 @@ namespace Meta.WitAi.TTS.Samples
 
         IEnumerator SetActiveSuggestionCoroutine(GameObject gameObject)
         {
+            Debug.Log("In SetActiveSuggestionCoroutine");
             gameObject.SetActive(true);
             //Play audio
             yield return new WaitForSeconds(20f);
@@ -241,12 +221,14 @@ namespace Meta.WitAi.TTS.Samples
 
         public void SetText(string text)
         {
+            Debug.Log("In SetText");
             inputField.text = text;
         }
 
         // Add delegates
         private void OnEnable()
         {
+            Debug.Log("In OnEnable");
             appVoiceExperience.VoiceEvents.OnRequestCreated.AddListener(OnRequestStarted);
             appVoiceExperience.VoiceEvents.OnPartialTranscription.AddListener(OnRequestTranscript);
             appVoiceExperience.VoiceEvents.OnFullTranscription.AddListener(OnRequestTranscript);
@@ -260,6 +242,7 @@ namespace Meta.WitAi.TTS.Samples
         // Remove delegates
         private void OnDisable()
         {
+            Debug.Log("In OnDisable");
             appVoiceExperience.VoiceEvents.OnRequestCreated.RemoveListener(OnRequestStarted);
             appVoiceExperience.VoiceEvents.OnPartialTranscription.RemoveListener(OnRequestTranscript);
             appVoiceExperience.VoiceEvents.OnFullTranscription.RemoveListener(OnRequestTranscript);
@@ -283,24 +266,28 @@ namespace Meta.WitAi.TTS.Samples
         // Request transcript
         private void OnRequestTranscript(string transcript)
         {
+            Debug.Log("In OnRequestTranscript");
             inputField.text = transcript;
         }
 
         // Listen start
         private void OnListenStart()
         {
+            Debug.Log("In OnListenStart");
             inputField.text = "Listening...";
         }
 
         // Listen stop
         private void OnListenStop()
         {
+            Debug.Log("In OnListenStop");
             inputField.text = "Processing...";
         }
 
         // Listen stop
         private void OnListenForcedStop()
         {
+            Debug.Log("In OnListenForcedStop");
             if (!showJson)
             {
                 inputField.text = "";
@@ -311,6 +298,7 @@ namespace Meta.WitAi.TTS.Samples
         // Request response
         private void OnRequestResponse(WitResponseNode response)
         {
+            Debug.Log("In OnRequestResponse");
             if (!showJson)
             {
                 if (!string.IsNullOrEmpty(response["text"]))
@@ -325,28 +313,32 @@ namespace Meta.WitAi.TTS.Samples
             OnRequestComplete();
         }
         // Request error
-        private void OnRequestError(string error, string message)
+        private void OnRequestError(string error, string msg)
         {
+            Debug.Log("In OnRequestError");
             if (!showJson)
             {
-                inputField.text = $"<color=\"red\">Error: {error}\n\n{message}</color>";
+                inputField.text = $"<color=\"red\">Error: {error}\n\n{msg}</color>";
             }
             OnRequestComplete();
         }
         // Deactivate
         private void OnRequestComplete()
         {
+            Debug.Log("In OnRequestComplete");
             _active = false;
         }
 
         // Toggle activation
         public void ToggleActivation()
         {
+            Debug.Log("In ToggleActivation");
             SetActivation(!_active);
         }
         // Set activation
         public void SetActivation(bool toActivated)
         {
+            Debug.Log("In SetActivation");
             if (_active != toActivated)
             {
                 _active = toActivated;
@@ -363,6 +355,7 @@ namespace Meta.WitAi.TTS.Samples
 
         public void Repeat()
         {
+            Debug.Log("In Repeat");
             _speaker.Speak(npcText.text);
         }
     }
