@@ -156,7 +156,7 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     EnableSuggestion(_stabilizer);
                 }     
-                else if(text.Contains("able to see") && (text.Contains("Power") || text.Contains("power")))
+                else if(text.Contains("able to see") && (text.Contains("Power") || text.Contains("power") || text.Contains("drill") || text.Contains("driver")))
                 {
                     EnableSuggestion(_drill);
                 }
