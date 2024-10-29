@@ -8,6 +8,8 @@ using Meta.WitAi.TTS.Utilities;
 using Oculus.Voice;
 using Meta.WitAi.Json;
 
+// wit + openai
+
 // A struct to help in creating the Json object to be sent to the rasa server
 public class PostMessageJson
 {
