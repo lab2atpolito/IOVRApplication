@@ -132,7 +132,7 @@ namespace Meta.WitAi.TTS.Samples
             
             var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Model = "ft:gpt-4o-mini-2024-07-18:personal:io-ninth-experiment:ANKYh9cF",
+                Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
                 Messages = messages
             });
 
