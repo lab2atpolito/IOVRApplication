@@ -55,7 +55,7 @@ namespace Meta.WitAi.TTS.Samples
         private OpenAIApi openai = new OpenAIApi();
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        private string prompt = "You are a helpful assistant specialized in intraosseous injections. Give short, concise answers. If asked question that are out of context, don't provide the answer and suggest the user to quit the game if they are done asking questions on intraosseous injections. When the user asks to see something, always write 'Now you will be able to see' and then the name of the object";
+        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
         
         [SerializeField] public TTSSpeaker _speaker;
 
