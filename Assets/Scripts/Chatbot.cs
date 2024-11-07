@@ -59,11 +59,12 @@ namespace Meta.WitAi.TTS.Samples
     
         private OpenAIApi openai = new OpenAIApi();
         private DateTime startTime;
-        private string gptModel = "gpt-4o-mini";
+        //private string gptModel = "gpt-4o-mini";
+        private string gptModel = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny";
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        // private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
-        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
+        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
+        //private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
 
 
         [SerializeField] public TTSSpeaker _speaker;
@@ -211,6 +212,7 @@ namespace Meta.WitAi.TTS.Samples
 
             //button.enabled = true;
             inputField.enabled = true;
+            inputField.text = "";
         }
         
 
