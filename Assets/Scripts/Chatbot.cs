@@ -152,7 +152,7 @@ namespace Meta.WitAi.TTS.Samples
 
 
                     string text = message.Content;
-                    if (text.Contains("able to see") && text.Contains("access point"))
+                    if (text.Contains("able to see") && text.Contains("point"))
                     {
                         SetActiveSuggestion(_insertionPositionSuggestion);
                     }
