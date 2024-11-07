@@ -49,11 +49,12 @@ namespace Meta.WitAi.TTS.Samples
         [SerializeField] private AppVoiceExperience appVoiceExperience;
         [SerializeField] private bool showJson;
 
+
         // Whether voice is activated
         public bool IsActive => _active;
         private bool _active = false;
 
-        string conversation;
+        public string conversation;
         string myFilePath, filename, filePath;
     
         private OpenAIApi openai = new OpenAIApi();
@@ -90,7 +91,7 @@ namespace Meta.WitAi.TTS.Samples
 
             filePath = Path.Combine(myFilePath, filename);
 
-            conversation = npcText.text;
+            conversation = "\n assistant (auto): \n" + npcText.text +"\n";
             StartCoroutine(Wait(3f));
         }
         
@@ -109,6 +110,8 @@ namespace Meta.WitAi.TTS.Samples
             {
                 npcText.text = "I didn't understand. Could you repeat?";
                 _speaker.SpeakQueued(npcText.text);
+                conversation = "\n assistant (auto): \n" + npcText.text + "\n";
+                StartCoroutine(LogTimeOnSpeechStart());
             }
             else
             {
@@ -144,7 +147,8 @@ namespace Meta.WitAi.TTS.Samples
                     messages.Add(message);
                     npcText.text = message.Content;
                     _speaker.SpeakQueued(npcText.text);
-                    conversation = conversation + "\n assistant: \n" + npcText.text;
+                    StartCoroutine(LogTimeOnSpeechStart());
+                    
 
 
                     string text = message.Content;
@@ -191,6 +195,7 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     Debug.LogWarning("No text was generated from this prompt.");
                 }
+                conversation = conversation + "\n assistant: \n" + npcText.text;
 
             }
 
@@ -263,7 +268,7 @@ namespace Meta.WitAi.TTS.Samples
 
             TimeSpan timeElapsed = DateTime.Now - startTime;
             Debug.Log($"Time elapsed from SendMessageToRasa to actual speech start: {timeElapsed.TotalMilliseconds} ms");
-            conversation = conversation + "\n time : \n" +  timeElapsed.TotalMilliseconds + "ms\n\n";
+            conversation = conversation + "\n time : \n" +  timeElapsed.TotalMilliseconds + "ms\n";
         }
 
         // Add delegates
@@ -394,16 +399,23 @@ namespace Meta.WitAi.TTS.Samples
             }
         }
 
-        public void Repeat()
+        public void OnNext()
+        {
+            StartCoroutine(saveNpcText());
+        }
+
+        private IEnumerator saveNpcText()
+        {
+            yield return new WaitForSeconds(0.3f);
+            conversation = conversation + "\n assistant (auto): \n" + npcText.text;
+
+        }
+
+            public void Repeat()
         {
             Debug.Log("In Repeat");
             _speaker.Speak(npcText.text);
             
-        }
-
-        private void Update()
-        {
-            LogTimeOnSpeechStart();
         }
 
 
