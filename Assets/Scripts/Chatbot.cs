@@ -7,6 +7,7 @@ using TMPro;
 using Meta.WitAi.TTS.Utilities;
 using Oculus.Voice;
 using Meta.WitAi.Json;
+using System.IO;
 
 // A struct to help in creating the Json object to be sent to the rasa server
 public class PostMessageJson
@@ -49,6 +50,11 @@ namespace Meta.WitAi.TTS.Samples
         // Whether voice is activated
         public bool IsActive => _active;
         private bool _active = false;
+        public string conversation;
+        string myFilePath, filename, filePath;
+
+        private DateTime startTime;
+
 
         private const string rasa_url = "http://localhost:5005/webhooks/rest/webhook";
     
@@ -68,6 +74,17 @@ namespace Meta.WitAi.TTS.Samples
             npcText.text = "Hey! I'll be your virtual assistant during the Intraosseous Insertion simulation." +
                 " Please enter your name in the window in front of you to start the simulation " +
                 "and feel free to ask me any questions if you have any doubts.";
+            myFilePath = Application.persistentDataPath + "/TestsRasa";
+            if (!Directory.Exists(myFilePath))
+            {
+                Debug.Log("Creating new folder");
+                Directory.CreateDirectory(myFilePath);
+            }
+            filename = "TestRasa_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
+
+            filePath = Path.Combine(myFilePath, filename);
+
+            conversation = " assistant (auto): \n" + npcText.text + "\n";
             StartCoroutine(Wait(3f));
         }
   
@@ -75,8 +92,10 @@ namespace Meta.WitAi.TTS.Samples
 
         public void SendMessageToRasa(string s)
         {
+            conversation = conversation + "\n user: \n" + inputField.text;
+            startTime = DateTime.Now;
             //Debug.Log("Input: " + s);
-             if (s != "") {
+            if (s != "") {
             //inputField.text = s;
             // Create a json object from user message
             PostMessageJson postMessage = new PostMessageJson
@@ -89,11 +108,18 @@ namespace Meta.WitAi.TTS.Samples
             print("User json : " + jsonBody);
 
             // Create a post request with the data to send to Rasa server
+
             StartCoroutine(PostRequest(rasa_url, jsonBody));
             }
         }
 
          public void SendMessageToRasa () {
+            if(inputField.text == "Listening..." || inputField.text == "Processing...")
+            {
+                inputField.text = "";
+            }
+            conversation = conversation + "\n user: \n" + inputField.text;
+            startTime = DateTime.Now;
             // get user messasge from input field, create a json object 
             // from user message and then clear input field
             string s = inputField.text;
@@ -145,6 +171,9 @@ namespace Meta.WitAi.TTS.Samples
 
                 // Speak the bot's response using Text-to-Speech
                 _speaker.SpeakQueued(root.messages[0].text);
+                StartCoroutine(LogTimeOnSpeechStart());
+
+                conversation = conversation + " assistant: \n" + npcText.text +"\n";
 
                 string text = root.messages[0].text;
                 if (text == "Now you will be able to see the correct insertion point for the needle on the patient's leg")
@@ -363,5 +392,39 @@ namespace Meta.WitAi.TTS.Samples
         {
             _speaker.Speak(npcText.text);
         }
+
+        private IEnumerator LogTimeOnSpeechStart()
+        {
+            while (!_speaker.IsSpeaking)
+            {
+                yield return null;
+            }
+
+            TimeSpan timeElapsed = DateTime.Now - startTime;
+            Debug.Log($"Time elapsed from SendMessageToRasa to actual speech start: {timeElapsed.TotalMilliseconds} ms");
+            conversation = conversation + "\n time : \n" + timeElapsed.TotalMilliseconds + "ms\n";
+        }
+
+
+        public void OnNext()
+        {
+            StartCoroutine(saveNpcText());
+        }
+
+        private IEnumerator saveNpcText()
+        {
+            yield return new WaitForSeconds(0.3f);
+            conversation = conversation + " assistant (auto): \n" + npcText.text;
+
+        }
+
+
+
+        private void OnApplicationQuit()
+        {
+            File.WriteAllText(filePath, conversation);
+            Debug.Log("saved to file to " + filePath);
+        }
+
     }
 }
