@@ -59,10 +59,13 @@ namespace Meta.WitAi.TTS.Samples
     
         private OpenAIApi openai = new OpenAIApi();
         private DateTime startTime;
+        private string gptModel = "gpt-4o-mini";
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
-        
+        // private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
+        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
+
+
         [SerializeField] public TTSSpeaker _speaker;
 
         [SerializeField] private GameObject _drillingInclinationSuggestion;
@@ -90,6 +93,11 @@ namespace Meta.WitAi.TTS.Samples
             filename = "TestOpenAI_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt";
 
             filePath = Path.Combine(myFilePath, filename);
+
+
+
+            //AddMessageToChat();
+            
 
             conversation = "\n assistant (auto): \n" + npcText.text +"\n";
             StartCoroutine(Wait(3f));
@@ -135,7 +143,8 @@ namespace Meta.WitAi.TTS.Samples
                 // Complete the instruction
                 var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
                 {
-                    Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                    //Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                    Model = gptModel,
                     Messages = messages
                 });
 
@@ -152,7 +161,7 @@ namespace Meta.WitAi.TTS.Samples
 
 
                     string text = message.Content;
-                    if (text.Contains("able to see") && text.Contains("point"))
+                    if (text.Contains("able to see") && text.Contains("point") || text.Contains("site"))
                     {
                         SetActiveSuggestion(_insertionPositionSuggestion);
                     }
@@ -399,9 +408,91 @@ namespace Meta.WitAi.TTS.Samples
             }
         }
 
-        public void OnNext()
+        public async void OnStartButton()
+        {
+            var newMessage = new ChatMessage()
+            {
+                Role = "user",
+                Content = prompt
+            };
+
+
+            Debug.Log("newMessage:" + newMessage);
+
+            messages.Add(newMessage);
+
+            var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                //Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                Model = gptModel,
+                Messages = messages
+            });
+
+            var newMessage2 = new ChatMessage()
+            {
+                Role = "assistant",
+                Content = "The first thing you have to do is to grab the ankle and straighten the leg."
+            };
+
+
+            Debug.Log("newMessage:" + newMessage2);
+
+            messages.Add(newMessage2);
+
+            completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                //Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                Model = gptModel,
+                Messages = messages
+            });
+        }
+
+        public async void OnNext()
         {
             StartCoroutine(saveNpcText());
+            //AddMessageToChat();
+            var newMessage = new ChatMessage()
+            {
+                Role = "assistant",
+                Content = npcText.text
+            };
+
+
+            Debug.Log("newMessage:" + newMessage);
+
+            messages.Add(newMessage);
+
+            var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                //Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                Model = gptModel,
+                Messages = messages
+            });
+
+        }
+
+        public async void AddMessageToChat()
+        {
+            var newMessage = new ChatMessage()
+            {
+                Role = "assistant",
+                Content = npcText.text
+            };
+
+
+            Debug.Log("newMessage:" + newMessage);
+
+
+            if (messages.Count == 0) newMessage.Content = prompt + "\n" + inputField.text;
+
+            messages.Add(newMessage);
+
+            var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                //Model = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny",
+                Model = gptModel,
+                Messages = messages
+            });
         }
 
         private IEnumerator saveNpcText()
