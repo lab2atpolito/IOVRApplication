@@ -1,0 +1,5 @@
+Hey! I'll be your virtual assistant during the Intraosseous Insertion simulation. Please enter your name in the window in front of you to start the simulation and feel free to ask me any questions if you have any doubts.
+ user: 
+Listening...
+ assistant: 
+Tell me about the different types of IO needles and their characteristics.
