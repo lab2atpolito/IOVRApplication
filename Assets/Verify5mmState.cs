@@ -52,8 +52,8 @@ public class Verify5mmState : ATask
         }
         else
         {
-            nextTaskId = 8;
-            _messageSys.SetMessage("The needle has not been placed correctly. Let's go back a few steps and try again").SetType(MessageType.WARNING).Show(true);
+            nextTaskId = 11;
+            _messageSys.SetMessage("The needle has not been placed correctly. Try again").SetType(MessageType.WARNING).Show(true);
         }
         return nextTaskId;
     }
