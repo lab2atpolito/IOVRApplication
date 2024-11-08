@@ -59,11 +59,12 @@ namespace Meta.WitAi.TTS.Samples
     
         private OpenAIApi openai = new OpenAIApi();
         private DateTime startTime;
-        //private string gptModel = "gpt-4o-mini";
-        private string gptModel = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny";
+        private string gptModel = "gpt-4o-mini";
+        //private string gptModel = "ft:gpt-4o-mini-2024-07-18:personal:io-tenth-experiment:ANtYAzny";
 
         private List<ChatMessage> messages = new List<ChatMessage>();
-        private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
+        private string prompt = "You are a friendly, specialized assistant guiding the user through an intraosseous (IO) access simulation in a VR app. The patient is a female adult, and the required needle in this case is the blue 25mm needle. You’ll receive contextual messages from the VR app about the current simulation stage to help provide accurate guidance. Answer Guidelines: Keep responses under 140 characters, including spaces. This limit is strict. Respond warmly to greetings (e.g., ‘Hello! How can I help with your IO procedure?’). For unrelated questions (e.g., general knowledge like ‘What’s the capital of France?’), respond with: ‘I’m here to help with intraosseous injections! If you’re done, feel free to close this session.’ If asked if actions are correct, say: ‘When done correctly, you’ll hear a sound and can proceed to the next step.’ Answer in context if questions relate to prior ones. If the user says a word slightly wrong but you understand the intended meaning based on context, respond using the correct word. If the user asks to view the spot, place, he is referring to the access point. Viewing Requests: If the user requests to view any of the following, respond: ‘Now you will be able to see [item].’ Items include: Access point, Inclination of the drill, EZ Stabilizer, EZ-IO Power Driver, EZ Connect extension set, catheter, stylet, Needle sets by color and size: Pink needle: 15mm, Blue needle: 25mm, Yellow needle: 45mm. For other items, respond: ‘Unfortunately, I cannot show that, but you can ask further questions.’ Device and Procedure Reminders: Remind users of device details or steps as needed, especially about the correct needle size and color for each part of the procedure. Important: All responses must fit within 140 characters, including spaces, and prioritize brevity and clarity.";
+        //private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. If asked a question unrelated to intraosseous injections, respond with, 'I’m here to help with intraosseous injections! If you’re done, feel free to close this session.' When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
         //private string prompt = "You are a knowledgeable assistant specializing in intraosseous injections. Provide brief, precise answers within 140 characters. When a user asks to view something, respond with: 'Now you will be able to see' followed by the name of the item or object.";
 
 
@@ -77,6 +78,8 @@ namespace Meta.WitAi.TTS.Samples
         [SerializeField] private GameObject _connector;
         [SerializeField] private GameObject _stabilizer;
         [SerializeField] private GameObject _drill;
+        [SerializeField] private GameObject _catheter;
+        [SerializeField] private GameObject _stylet;
 
         void Start ()
         {
@@ -166,39 +169,47 @@ namespace Meta.WitAi.TTS.Samples
                     {
                         SetActiveSuggestion(_insertionPositionSuggestion);
                     }
-                    else if (text.Contains("able to see") && (text.Contains("angle") || text.Contains("inclination")))
+                    if (text.Contains("able to see") && (text.Contains("angle") || text.Contains("inclination")))
                     {
                         SetActiveSuggestion(_drillingInclinationSuggestion);
                     }
-                    else if (text.Contains("able to see") && text.Contains("needle") && text.Contains("correct") && text.Contains("insert"))
+                    /*else if (text.Contains("able to see") && text.Contains("needle") && text.Contains("correct") && text.Contains("insert"))
                     {
                         Needle needle = _drill.GetComponent<PowerDrill>().GetNeedle();
                         EnableLine(needle);
                         Debug.Log("ENTRATO");
-                    }
-                    else if (text.Contains("able to see") && text.Contains("15mm"))
+                    }*/
+                    if (text.Contains("able to see") && text.Contains("15mm") || text.Contains("pink"))
                     {
                         EnableSuggestion(_15mmNeedle);
                     }
-                    else if (text.Contains("able to see") && text.Contains("25mm"))
+                    if (text.Contains("able to see") && text.Contains("25mm") || text.Contains("blue"))
                     {
                         EnableSuggestion(_25mmNeedle);
                     }
-                    else if (text.Contains("able to see") && text.Contains("40mm"))
+                    if (text.Contains("able to see") && text.Contains("40mm") || text.Contains("yellow"))
                     {
                         EnableSuggestion(_40mmNeedle);
                     }
-                    else if (text.Contains("able to see") && (text.Contains("Connect") || text.Contains("connect")))
+                    if (text.Contains("able to see") && (text.Contains("Connect") || text.Contains("connect")))
                     {
                         EnableSuggestion(_connector);
                     }
-                    else if (text.Contains("able to see") && (text.Contains("Stabilizer") || text.Contains("stabilize")))
+                    if (text.Contains("able to see") && (text.Contains("Stabilizer") || text.Contains("stabilize")))
                     {
                         EnableSuggestion(_stabilizer);
                     }
-                    else if (text.Contains("able to see") && (text.Contains("Power") || text.Contains("power") || text.Contains("drill") || text.Contains("driver")))
+                    if (text.Contains("able to see") && (text.Contains("Power") || text.Contains("power") || text.Contains("drill") || text.Contains("driver")))
                     {
                         EnableSuggestion(_drill);
+                    }
+                    if (text.Contains("able to see") && (text.Contains("catheter")))
+                    {
+                        EnableSuggestion(_catheter);
+                    }
+                    if (text.Contains("able to see") && (text.Contains("stylet")))
+                    {
+                        EnableSuggestion(_stylet);
                     }
                 }
                 else
