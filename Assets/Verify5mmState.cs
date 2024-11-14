@@ -40,15 +40,20 @@ public class Verify5mmState : ATask
     {
         NeedleInteraction needle = _drill.GetNeedle().GetComponent<NeedleInteraction>();
         int nextTaskId;
-        if(_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible() )
+        if (_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible())
         {
             nextTaskId = currentTask + 1;
-            _messageSys.SetMessage("You've chosen the correct sized needle, at least one black line (5mm) is visible.").SetType(MessageType.NOTIFICATION).Show(true);
+            _messageSys.SetMessage("You've chosen the correct sized needle, at least one line (5mm) is visible.").SetType(MessageType.NOTIFICATION).Show(true);
+        }
+        else if (_needle.GetNeedleType() != NeedleType.BLUE)
+        {
+            nextTaskId = 6;
+            _messageSys.SetMessage("You've chosen the wrong sized needle. Let's go back a few steps. Choose another needle to proceed with the Intraosseous Insertion.").SetType(MessageType.WARNING).Show(true);
         }
         else
         {
-            nextTaskId = 6;
-            _messageSys.SetMessage("You've chosen the wrong sized needle, choose another needle to proceed with the Intraosseous Insertion.").SetType(MessageType.WARNING).Show(true);
+            nextTaskId = 11;
+            _messageSys.SetMessage("The needle has not been placed correctly. Try again").SetType(MessageType.WARNING).Show(true);
         }
         return nextTaskId;
     }

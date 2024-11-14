@@ -84,8 +84,10 @@ public class PierceSkinState : ATask
             // The user has chosen the blue (25mm) needle or the yellow needle (45mm)
             if (_drill.GetNeedle().GetNeedleType() == NeedleType.BLUE || _drill.GetNeedle().GetNeedleType() == NeedleType.YELLOW)
             {
+
+                //Debug.Log(needle.GetAnglePrecision() / 100f);
                 // The needle reached the surface of the bone
-                if (needle.GetCurrentState() == State.IN_BONE && !_isCompleted)
+                if (needle.GetCurrentState() == State.IN_BONE && !_isCompleted && (needle.GetAnglePrecision()/100f) > 0.8f && (needle.GetPositionPrecision()/100f) > 0.8f)
                 {
                     _isCompleted = true;
                     if (controller.IsGuideActive())
