@@ -40,7 +40,7 @@ public class Verify5mmState : ATask
     {
         NeedleInteraction needle = _drill.GetNeedle().GetComponent<NeedleInteraction>();
         int nextTaskId;
-        if (_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible())
+        if (_needle.GetNeedleType() == NeedleType.BLUE && needle.IsOneLineVisible() && (needle.GetAnglePrecision() / 100f) > 0.8f && (needle.GetPositionPrecision() / 100f) > 0.8f)
         {
             nextTaskId = currentTask + 1;
             _messageSys.SetMessage("You've chosen the correct sized needle, at least one line (5mm) is visible.").SetType(MessageType.NOTIFICATION).Show(true);
@@ -50,10 +50,15 @@ public class Verify5mmState : ATask
             nextTaskId = 6;
             _messageSys.SetMessage("You've chosen the wrong sized needle. Let's go back a few steps. Choose another needle to proceed with the Intraosseous Insertion.").SetType(MessageType.WARNING).Show(true);
         }
+        else if ((needle.GetAnglePrecision() / 100f) < 0.8f || (needle.GetPositionPrecision() / 100f) < 0.8f)
+        {
+            nextTaskId = 8;
+            _messageSys.SetMessage("The needle's position or angle are wrong, you need to reinsert in the correct way").SetType(MessageType.WARNING).Show(true);
+        }
         else
         {
-            nextTaskId = 11;
-            _messageSys.SetMessage("The needle has not been placed correctly. Try again").SetType(MessageType.WARNING).Show(true);
+            nextTaskId = 9;
+            _messageSys.SetMessage("The needle has not been placed correctly. Ensure that at least one line (5mm) is visible.").SetType(MessageType.WARNING).Show(true);
         }
         return nextTaskId;
     }
