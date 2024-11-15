@@ -68,6 +68,8 @@ namespace Meta.WitAi.TTS.Samples
         [SerializeField] private GameObject _connector;
         [SerializeField] private GameObject _stabilizer;
         [SerializeField] private GameObject _drill;
+        [SerializeField] private GameObject _stylet;
+        [SerializeField] private GameObject _catheter;
 
         void Start ()
         {
@@ -214,6 +216,15 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     EnableSuggestion(_drill);
                 }
+                else if (text == "Now you will be able to see in the scene the EZ-IO stylet outlined")
+                {
+                    EnableSuggestion(_stylet);
+                }
+                else if (text == "Now you will be able to see in the scene the EZ-IO catheter hub outlined")
+                {
+                    EnableSuggestion(_catheter);
+                }
+
             }
             else
             {
