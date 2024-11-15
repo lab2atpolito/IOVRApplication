@@ -216,11 +216,11 @@ namespace Meta.WitAi.TTS.Samples
                 {
                     EnableSuggestion(_drill);
                 }
-                else if (text == "Now you will be able to see in the scene the EZ-IO stylet outlined")
+                else if (text == "Now you will be able to see in the scene the stylet outlined")
                 {
                     EnableSuggestion(_stylet);
                 }
-                else if (text == "Now you will be able to see in the scene the EZ-IO catheter hub outlined")
+                else if (text == "Now you will be able to see in the scene the catheter hub outlined")
                 {
                     EnableSuggestion(_catheter);
                 }
