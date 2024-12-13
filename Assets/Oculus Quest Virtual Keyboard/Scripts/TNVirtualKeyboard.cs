@@ -28,7 +28,9 @@ public class TNVirtualKeyboard : MonoBehaviour
     }
 	
 	public void KeyPress(string k){
-		words += k;
+		if (targetText.text == "Listening...") targetText.text = "";
+		words = targetText.text + k;
+		//words += k;
 		targetText.text = words;	
 		debugText.text = words;
 	}
