@@ -123,7 +123,7 @@ Material:
     - _TransparentStartPoint: 1
     - _UVSec: 0
     - _WristFade: 0.5
-    - _WristOpacity: 0.0025654633
+    - _WristOpacity: 0.010466416
     - _XRayBias: 0
     - _XRayBias1: 0
     - _XRayIntensity: 1.5
