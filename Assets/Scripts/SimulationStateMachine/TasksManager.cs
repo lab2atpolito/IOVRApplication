@@ -24,6 +24,7 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private GameObject _virtualAssistentCanva;
     [SerializeField] private GameObject _timeTaskCanva;
     [SerializeField] private GameObject _messageCanva;
+    [SerializeField] private GameObject _keyboardCanva;
 
     public bool IsGuideActive()
     {
@@ -100,6 +101,10 @@ public class TasksManager : MonoBehaviour
         //    OutTaskGUI();
         //}
 
+        string resultsQuestionnaire = questionnaire.sendResultsQuestionnaire();
+
+        questionnaire.gameObject.SetActive(false);
+
         _completeSceneCanva.SetActive(true);
         Debug.Log("Simulation completed!");
 
@@ -136,7 +141,7 @@ public class TasksManager : MonoBehaviour
 
        
 
-        string resultsQuestionnaire = questionnaire.sendResultsQuestionnaire();
+        
 
         // Save the current session infromation on a .json file
         SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score, resultsQuestionnaire);
@@ -271,6 +276,7 @@ public class TasksManager : MonoBehaviour
         _virtualAssistentCanva.SetActive(false);
         _messageCanva.SetActive(false);
         _timeTaskCanva.SetActive(false);
+        _keyboardCanva.SetActive(false);
         questionnaire.gameObject.SetActive(true);
     }
 

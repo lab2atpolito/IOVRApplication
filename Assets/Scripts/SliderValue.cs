@@ -8,4 +8,10 @@ public class SliderValue : MonoBehaviour
 {
     public TextMeshProUGUI _question;
     public Slider _slider;
+    public TextMeshProUGUI _value;
+
+    public void setValue()
+    {
+        _value.text = _slider.value.ToString();
+    }
 }
