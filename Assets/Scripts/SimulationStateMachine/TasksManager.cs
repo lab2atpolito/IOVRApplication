@@ -21,6 +21,10 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private Button _nextButton;
     [SerializeField] private GameObject _completeSceneCanva;
 
+    [SerializeField] private GameObject _virtualAssistentCanva;
+    [SerializeField] private GameObject _timeTaskCanva;
+    [SerializeField] private GameObject _messageCanva;
+
     public bool IsGuideActive()
     {
         return _isGuideActive;
@@ -39,6 +43,7 @@ public class TasksManager : MonoBehaviour
     [Header("Text To Speech")]
     [SerializeField] private TTSSpeaker _tts;
     [SerializeField] private TextMeshProUGUI _vaText;
+    [SerializeField] private Questionnaire questionnaire;
 
     private AudioManager _audioMgr; 
     private Needle _choosenNeedle;
@@ -87,13 +92,13 @@ public class TasksManager : MonoBehaviour
 
     public void EndSimulation()
     {
-        _isStarted = false;
-        _time.StopTimer();
+        //_isStarted = false;
+        //_time.StopTimer();
 
-        if( _isGuideActive)
-        {
-            OutTaskGUI();
-        }
+        //if( _isGuideActive)
+        //{
+        //    OutTaskGUI();
+        //}
 
         _completeSceneCanva.SetActive(true);
         Debug.Log("Simulation completed!");
@@ -129,8 +134,12 @@ public class TasksManager : MonoBehaviour
         else
             sessionType = "Free";
 
+       
+
+        string resultsQuestionnaire = questionnaire.sendResultsQuestionnaire();
+
         // Save the current session infromation on a .json file
-        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score);
+        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score, resultsQuestionnaire);
         SavingSystem.Save(_currentUsername, sessionType, simulationData);
         //Debug.Log(simulationData.ToString());
     }
@@ -159,7 +168,8 @@ public class TasksManager : MonoBehaviour
             }
         }
         else {
-            EndSimulation();
+            //EndSimulation();
+            Questionnaire();
         }
     }
 
@@ -247,4 +257,23 @@ public class TasksManager : MonoBehaviour
         _puncturesCount += 1;
         Debug.Log("Puncture count: " + _puncturesCount);
     }
+
+    public void Questionnaire()
+    {
+        _isStarted = false;
+        _time.StopTimer();
+
+        if (_isGuideActive)
+        {
+            OutTaskGUI();
+        }
+
+        _virtualAssistentCanva.SetActive(false);
+        _messageCanva.SetActive(false);
+        _timeTaskCanva.SetActive(false);
+        questionnaire.gameObject.SetActive(true);
+    }
+
+
+
 }
