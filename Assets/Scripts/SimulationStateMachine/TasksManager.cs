@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 using Meta.WitAi.TTS.Utilities;
+using Meta.WitAi.TTS.Samples;
 
 public class TasksManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentTaskIndexText;
     [SerializeField] private Button _nextButton;
     [SerializeField] private GameObject _completeSceneCanva;
+    [SerializeField] private Chatbot _chatbot;
 
     public bool IsGuideActive()
     {
@@ -132,6 +134,9 @@ public class TasksManager : MonoBehaviour
         // Save the current session infromation on a .json file
         SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score);
         SavingSystem.Save(_currentUsername, sessionType, simulationData);
+
+        _chatbot.SaveInfoChatbot();
+
         //Debug.Log(simulationData.ToString());
     }
 

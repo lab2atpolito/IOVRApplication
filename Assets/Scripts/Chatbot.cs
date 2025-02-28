@@ -523,6 +523,11 @@ namespace Meta.WitAi.TTS.Samples
             
         }
 
+        public void SaveInfoChatbot()
+        {
+            File.WriteAllText(filePath, conversation);
+        }
+
 
         private void OnApplicationQuit()
         {

@@ -63,7 +63,7 @@ public class PenetrateBoneState : ATask
                 }
             }
 
-            if (needle.GetCurrentState() == State.MEDULLARY_CAVITY && !_isCompleted)
+            if (needle.GetCurrentState() == State.MEDULLARY_CAVITY && !_isCompleted && (needle.GetAnglePrecision() / 100f) >= 0.9f && (needle.GetPositionPrecision() / 100f) >= 0.9f)
             {
                 _isCompleted = true;
                 if (controller.IsGuideActive())

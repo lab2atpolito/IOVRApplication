@@ -32,6 +32,8 @@ public class AttachStabilizerState : ATask
     {
         if (_stabilizer.IsAttached() && !_isCompleted)
         {
+
+            //_stabilizer.blockBone();
             _isCompleted = true;
             if (controller.IsGuideActive())
                 controller.EnableButton();

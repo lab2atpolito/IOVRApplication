@@ -6,6 +6,9 @@ public class Stabilizer : MonoBehaviour
 {
     [SerializeField] private Sticker _sticker_one;
     [SerializeField] private Sticker _sticker_two;
+    [SerializeField] private Rigidbody bone1;
+    [SerializeField] private Rigidbody bone2;
+    [SerializeField] private Rigidbody bone3;
 
     private bool _isAttached = false;
     private bool _isGrabbed = false;
@@ -73,5 +76,12 @@ public class Stabilizer : MonoBehaviour
     public bool IsGrabbed()
     {
         return _isGrabbed; 
+    }
+
+    public void blockBone()
+    {
+        bone1.isKinematic = true;
+        bone2.isKinematic = true;
+        bone3.isKinematic = true;
     }
 }
