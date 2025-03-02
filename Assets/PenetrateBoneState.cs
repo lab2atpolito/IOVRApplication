@@ -40,6 +40,19 @@ public class PenetrateBoneState : ATask
         //_messageSys.Hide();
     }
 
+    public override int GetNextTaskId(int currentId)
+    {
+        NeedleInteraction needle = _drill.GetNeedle().GetComponent<NeedleInteraction>();
+        int nextTaskId;
+        if (needle.GetCurrentState() == State.IN_BONE && needle.HasReachedMaxDepth())
+        {
+            return 8;
+        }
+        else { nextTaskId = currentId + 1;  }
+            
+        return nextTaskId;
+    }
+
     public override void OnUpdate(TasksManager controller)
     {
         if (!_drill.IsEmpty())
@@ -63,7 +76,7 @@ public class PenetrateBoneState : ATask
                 }
             }
 
-            if (needle.GetCurrentState() == State.MEDULLARY_CAVITY && !_isCompleted && (needle.GetAnglePrecision() / 100f) >= 0.9f && (needle.GetPositionPrecision() / 100f) >= 0.9f)
+            if (needle.GetCurrentState() == State.MEDULLARY_CAVITY && !_isCompleted && (needle.GetAnglePrecision() / 100f) >= 0.8f && (needle.GetPositionPrecision() / 100f) >= 0.8f)
             {
                 _isCompleted = true;
                 if (controller.IsGuideActive())
@@ -79,6 +92,13 @@ public class PenetrateBoneState : ATask
 
                 else
                     _messageSys.SetMessage("The selected needle seems to be too long!").SetType(MessageType.WARNING).Show(true); 
+            }
+            else if (needle.GetCurrentState() == State.IN_BONE && needle.HasReachedMaxDepth())
+            {
+                if (controller.IsGuideActive())
+                    controller.EnableButton();
+                
+                _messageSys.SetMessage("The tip of the needle non ha successfully reached the medullary cavity of the bone, cambia la sua posizione").SetType(MessageType.NOTIFICATION).Show(true);
             }
             else if (needle.GetCurrentState() != State.MEDULLARY_CAVITY)
             {

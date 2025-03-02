@@ -19,6 +19,9 @@ public class NeedleInteraction : MonoBehaviour
     [SerializeField] private Transform _boneSurfaceTarget;
     [SerializeField] private Vector3 _skinSurfaceTarget;
 
+    [SerializeField] private Transform sphere1;
+    [SerializeField] private Transform sphere2;
+
     private float _positionPrecision;
     private float _anglePrecision;
 
@@ -284,10 +287,12 @@ public class NeedleInteraction : MonoBehaviour
     {
         // Calculate the distance between ideal insertion point and actual insertion point
         float distance = Vector3.Distance(hit.point, _skinSurfaceTarget);
-
+        //sphere1.position = hit.point;
+        //sphere2.position = _skinSurfaceTarget;
+        //Debug.Log("Distance calcolare" + distance);
         // Calculate precision value normalizing distance value using position precision threshold
         float precisionValue = (1f - Mathf.Clamp01(distance / _positionPrecisionThreshold)) * 100f;
-
+        //Debug.Log("PrecisionValue calcolare" + precisionValue);
         // Update position precision UI
         _positionPrecision = precisionValue;
     }

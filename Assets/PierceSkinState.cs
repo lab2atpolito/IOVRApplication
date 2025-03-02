@@ -85,7 +85,7 @@ public class PierceSkinState : ATask
             if (_drill.GetNeedle().GetNeedleType() == NeedleType.BLUE || _drill.GetNeedle().GetNeedleType() == NeedleType.YELLOW)
             {
                 // The needle reached the surface of the bone
-                if (needle.GetCurrentState() == State.IN_BONE && !_isCompleted && (needle.GetAnglePrecision() / 100f) > 0.9f && (needle.GetPositionPrecision() / 100f) > 0.9f)
+                if (needle.GetCurrentState() == State.IN_BONE && !_isCompleted && (needle.GetAnglePrecision() / 100f) > 0.8f && (needle.GetPositionPrecision() / 100f) > 0.8f && needle.IsOneLineVisible())
                 {
                     _isCompleted = true;
                     if (controller.IsGuideActive())
