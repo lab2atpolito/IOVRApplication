@@ -23,6 +23,12 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private GameObject _completeSceneCanva;
     [SerializeField] private Chatbot _chatbot;
 
+    [SerializeField] private GameObject _virtualAssistentCanva;
+    [SerializeField] private GameObject _timeTaskCanva;
+    [SerializeField] private GameObject _messageCanva;
+    [SerializeField] private GameObject _keyboardCanva;
+    [SerializeField] private Questionnaire questionnaire;
+
     public bool IsGuideActive()
     {
         return _isGuideActive;
@@ -89,13 +95,18 @@ public class TasksManager : MonoBehaviour
 
     public void EndSimulation()
     {
-        _isStarted = false;
-        _time.StopTimer();
+        //_isStarted = false;
+        //_time.StopTimer();
 
-        if( _isGuideActive)
-        {
-            OutTaskGUI();
-        }
+        //if( _isGuideActive)
+        //{
+        //    OutTaskGUI();
+        //}
+
+        string resultsQuestionnaire = questionnaire.sendResultsQuestionnaire();
+
+        questionnaire.gameObject.SetActive(false);
+
 
         _completeSceneCanva.SetActive(true);
         Debug.Log("Simulation completed!");
@@ -132,7 +143,7 @@ public class TasksManager : MonoBehaviour
             sessionType = "Free";
 
         // Save the current session infromation on a .json file
-        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount,  _positionPrecision, _inclinationPrecision, _score);
+        SimulationSaveData simulationData = new SimulationSaveData(sessionType, DateTime.Now.ToString(CultureInfo.InstalledUICulture), _currentUsername, _time.GetTimeInString(), tasksTime, formattedAverageTime, _puncturesCount, _positionPrecision, _inclinationPrecision, _score, resultsQuestionnaire);
         SavingSystem.Save(_currentUsername, sessionType, simulationData);
 
         _chatbot.SaveInfoChatbot();
@@ -164,7 +175,8 @@ public class TasksManager : MonoBehaviour
             }
         }
         else {
-            EndSimulation();
+            //EndSimulation();
+            Questionnaire();
         }
     }
 
@@ -252,4 +264,22 @@ public class TasksManager : MonoBehaviour
         _puncturesCount += 1;
         Debug.Log("Puncture count: " + _puncturesCount);
     }
+
+    public void Questionnaire()
+    {
+        _isStarted = false;
+        _time.StopTimer();
+
+        if (_isGuideActive)
+        {
+            OutTaskGUI();
+        }
+
+        _virtualAssistentCanva.SetActive(false);
+        _messageCanva.SetActive(false);
+        _timeTaskCanva.SetActive(false);
+        _keyboardCanva.SetActive(false);
+        questionnaire.gameObject.SetActive(true);
+    }
+
 }

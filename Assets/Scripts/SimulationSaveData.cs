@@ -16,9 +16,10 @@ public class SimulationSaveData
     public float positionPrecision;
     public float inclinationPrecision;
     public int score;
+    public string resultsQuestionnaire;
 
-    public SimulationSaveData(string sessionType, string date, string username, string totalTime,  List<string> tasksTime, string averageTimePerTask,
-        int puncturesCount, float positionPrecision, float inclinationPrecision, int score)
+    public SimulationSaveData(string sessionType, string date, string username, string totalTime, List<string> tasksTime, string averageTimePerTask,
+        int puncturesCount, float positionPrecision, float inclinationPrecision, int score, string resultsQuestionnaire)
     {
         this.sessionType = sessionType;
         this.date = date;
@@ -30,7 +31,9 @@ public class SimulationSaveData
         this.inclinationPrecision = inclinationPrecision;
         this.score = score;
         this.averageTimePerTask = averageTimePerTask;
+        this.resultsQuestionnaire = resultsQuestionnaire;
     }
+
 
     public override string ToString()
     {
@@ -42,8 +45,10 @@ public class SimulationSaveData
             "Punctures Count: " + puncturesCount + "\n" +
             "Position precision: " + positionPrecision + "\n" +
             "Inclination precision: " + inclinationPrecision + "\n" +
-            "Score: " + score + "\n";
+            "Score: " + score + "\n" +
+            "Questionnaire: " + resultsQuestionnaire + "\n";
     }
+
 }
 
 [Serializable]
