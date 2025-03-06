@@ -7,6 +7,7 @@ public class RemoveAdhesive_State : ATask
     [SerializeField] private Sticker _sticker1;
     [SerializeField] private Sticker _sticker2;
     [SerializeField] private GameObject[] _handGrabs;
+    public bool _remouveSticker = false;
 
     public override void OnEntry(TasksManager controller)
     {
@@ -32,6 +33,7 @@ public class RemoveAdhesive_State : ATask
     {
         if (!_sticker1.IsAttached() && !_sticker2.IsAttached() && !_isCompleted)
         {
+            _remouveSticker = true;
             _isCompleted = true;
             if (controller.IsGuideActive())
                 controller.EnableButton();

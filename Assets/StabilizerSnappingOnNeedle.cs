@@ -42,7 +42,7 @@ public class StabilizerSnappingOnNeedle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if( other.gameObject.tag == "Stabilizer" )
+        if( other.gameObject.tag == "Stabilizer" && _stabilizer.GetComponent<RemoveAdhesive_State>()._remouveSticker)
         {
             // Disable gravity for stickers to avoid bugs when colliding with the leg
             _stabilizer.GetComponent<Stabilizer>().DisableGravity();

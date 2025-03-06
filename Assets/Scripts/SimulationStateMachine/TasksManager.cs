@@ -28,6 +28,7 @@ public class TasksManager : MonoBehaviour
     [SerializeField] private GameObject _messageCanva;
     [SerializeField] private GameObject _keyboardCanva;
     [SerializeField] private Questionnaire questionnaire;
+    [SerializeField] private GameObject _menuCanva;
 
     public bool IsGuideActive()
     {
@@ -273,6 +274,11 @@ public class TasksManager : MonoBehaviour
         if (_isGuideActive)
         {
             OutTaskGUI();
+        }
+
+        if (_menuCanva != null)
+        {
+            _menuCanva.SetActive(false);
         }
 
         _virtualAssistentCanva.SetActive(false);
